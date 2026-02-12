@@ -64,9 +64,9 @@
 <body class="bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] font-body text-white overflow-x-hidden selection:bg-primary selection:text-black">
 <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gradient-to-b from-[#050014]/90 to-transparent">
 <div class="flex items-center justify-between px-4 py-4 pt-6">
-<button class="w-10 h-10 flex items-center justify-center rounded-full bg-[#13092d]/60 backdrop-blur-md text-white hover:bg-primary/20 hover:text-primary transition border border-white/5 hover:border-primary/50">
-<span class="material-symbols-outlined">arrow_back</span>
-</button>
+        <a href="<?= base_url('/') ?>" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#13092d]/60 backdrop-blur-md text-white hover:bg-primary/20 hover:text-primary transition border border-white/5 hover:border-primary/50">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </a>
 <div class="flex items-center gap-4">
 <button class="w-10 h-10 flex items-center justify-center rounded-full bg-[#13092d]/60 backdrop-blur-md text-white hover:bg-primary/20 hover:text-primary transition border border-white/5 hover:border-primary/50">
 <span class="material-symbols-outlined">share</span>
@@ -78,7 +78,7 @@
 </div>
 </header>
 <section class="relative w-full h-[60vh] min-h-[450px]">
-<div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBllluX5HhK5gFyG9Eh8s3ghD95oUUFc_T5qfy59_bzISQrl7V1BfeuCp0qwZzzYfT22Ed6xN0WYs_dsvC8WDRPqVrcb-1Vy0-AfONNJh_KJlIaJgnNlN2ZufcTlLMmxvHQYHNsTOSaXBKDDoMkhrkH-XHVfFCQ7d-PJtCj1vQIXm_TsYi5uycpX1t0KfbwDm3C1YD-9pIeoh2iCBtPMrXgpPIKRgkTWDsAzZKyHb8v07ii9RsnlXC366NkxlDDpclaPZNoNMxL_MT8');">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('https://us.oricon-group.com/upimg/sns/1000/1591/img1200/f8cd49221ee4f40281b0d8a033a89bb3.jpg');">
 <div class="absolute inset-0 bg-gradient-to-b from-[#050014]/40 via-transparent to-[#0f0c29]"></div>
 <div class="absolute inset-0 bg-gradient-to-t from-[#0f0c29] via-[#0f0c29]/70 to-transparent"></div>
 <div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-0 bg-[length:100%_2px,3px_100%] pointer-events-none"></div>
@@ -86,10 +86,10 @@
 <div class="absolute bottom-0 left-0 w-full px-5 pb-6 z-10">
 <div class="flex items-end gap-4 mb-4">
 <div class="hidden sm:block w-24 h-36 rounded-lg overflow-hidden border-2 border-primary shadow-[0_0_15px_rgba(0,243,255,0.3)] shrink-0">
-<img alt="Poster Small" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBllluX5HhK5gFyG9Eh8s3ghD95oUUFc_T5qfy59_bzISQrl7V1BfeuCp0qwZzzYfT22Ed6xN0WYs_dsvC8WDRPqVrcb-1Vy0-AfONNJh_KJlIaJgnNlN2ZufcTlLMmxvHQYHNsTOSaXBKDDoMkhrkH-XHVfFCQ7d-PJtCj1vQIXm_TsYi5uycpX1t0KfbwDm3C1YD-9pIeoh2iCBtPMrXgpPIKRgkTWDsAzZKyHb8v07ii9RsnlXC366NkxlDDpclaPZNoNMxL_MT8"/>
+<img alt="Poster Small" class="w-full h-full object-cover" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9b52e811-e125-4bb8-b27b-02e36636f5d2/dg0ragn-f7027124-1aec-4741-8f17-1eb4bb8ce6c2.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi85YjUyZTgxMS1lMTI1LTRiYjgtYjI3Yi0wMmUzNjYzNmY1ZDIvZGcwcmFnbi1mNzAyNzEyNC0xYWVjLTQ3NDEtOGYxNy0xZWI0YmI4Y2U2YzIuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.uYiCcq-oqSeBOvMGtS5aXvejWHhNNDs7OTaMiJUCczs"/>
 </div>
 <div class="flex-1">
-<h1 class="font-display text-3xl sm:text-4xl font-black tracking-wider uppercase leading-none mb-3 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">Starbound <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyber-purple">Odyssey</span></h1>
+<h1 class="font-display text-3xl sm:text-4xl font-black tracking-wider uppercase leading-none mb-3 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">Jujutsu <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyber-purple">Kaisen</span></h1>
 <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-semibold text-gray-300 font-body tracking-wide">
 <div class="flex items-center text-primary drop-shadow-[0_0_5px_rgba(0,243,255,0.8)]">
 <span class="material-symbols-outlined text-base fill-current mr-1">star</span>
@@ -110,17 +110,19 @@
 </div>
 </div>
 <div class="flex items-center gap-3 w-full">
-<button class="flex-1 h-12 bg-[#2a0e44] text-white rounded-md flex items-center justify-center gap-2 font-display font-bold hover:bg-[#3d1463] transition active:scale-95 border border-primary shadow-[0_0_15px_rgba(0,243,255,0.4)] relative overflow-hidden group">
-<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-700"></div>
-<span class="material-symbols-outlined fill-current text-primary drop-shadow-[0_0_5px_rgba(0,243,255,1)]">play_arrow</span>
-<span class="tracking-widest uppercase text-sm">Watch S1 E1</span>
-</button>
+<a href="<?= base_url('watch/' . $episodes[0]['id_episode']) ?>" class="flex-1">
+    <button class="w-full h-12 bg-[#2a0e44] text-white rounded-md flex items-center justify-center gap-2 font-display font-bold hover:bg-[#3d1463] transition active:scale-95 border border-primary shadow-[0_0_15px_rgba(0,243,255,0.4)] relative overflow-hidden group">
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-700"></div>
+        <span class="material-symbols-outlined fill-current text-primary drop-shadow-[0_0_5px_rgba(0,243,255,1)]">play_arrow</span>
+        <span class="tracking-widest uppercase text-sm">Watch S1 E1</span>
+    </button>
+</a>
 <button class="w-12 h-12 bg-surface-dark/80 border border-cyber-purple text-cyber-purple rounded-md flex items-center justify-center hover:bg-cyber-purple/20 transition active:scale-95 shadow-[0_0_10px_rgba(188,19,254,0.3)] backdrop-blur-sm">
 <span class="material-symbols-outlined drop-shadow-[0_0_5px_rgba(188,19,254,0.8)]">bookmark_add</span>
 </button>
 </div>
 <p class="text-sm text-gray-300 mt-5 leading-relaxed line-clamp-3 font-body tracking-wide border-l-2 border-primary/50 pl-3">
-            In a distant future where humanity has colonized the stars, young pilot Kael discovers an ancient mecha buried on a forgotten moon. Thrust into an intergalactic war, he must unlock the machine's secrets to save his home.
+        In a world where human malice manifests as lethal curses, a high schooler dives into a high-stakes war of sorcery to save humanity from its own darkest shadows.
         </p>
 </div>
 </section>
@@ -137,35 +139,51 @@
 </div>
 </div>
 <div class="space-y-4">
-<div class="flex gap-3 group cursor-pointer hover:bg-white/5 p-2 -mx-2 rounded-lg transition border border-transparent hover:border-white/10">
-<div class="relative w-36 aspect-video rounded-sm overflow-hidden bg-surface-dark shrink-0 border border-cyber-purple shadow-[0_0_8px_rgba(188,19,254,0.2)] group-hover:shadow-[0_0_12px_rgba(188,19,254,0.5)] transition-all duration-300">
-<img alt="Ep 1" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOQZugFL2O6lgbb55-IvchfYetp7BdIsfHJnVaGKyJZHopsy1Fri0IzKyAfYweVBDx2KiuTXHGAckGAVzPw4xSwc3eKJ1tT6d209guillOJNkF60p3nwgNlyofcwMiHelfy_yf5_L7o1RGBviAmKif8yQQUazypE2-QtnY9J2htQ2AjAmjiBdjtrutZznjHZEGbHIRSfcPhHeBSEqzruNKsTlZ1Vpg4txjR16ykU_YBCmQR3vkmTo5GYL9vO_OQOIoXlb0mM0FU13r"/>
-<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition backdrop-blur-[1px]">
-<span class="material-symbols-outlined text-primary drop-shadow-[0_0_5px_rgba(0,243,255,1)] text-4xl">play_circle</span>
+        <a href="<?= base_url('watch/' . $episodes[0]['id_episode']) ?>" class="flex gap-3 group cursor-pointer hover:bg-white/5 p-2 -mx-2 rounded-lg transition border border-transparent hover:border-white/10 block">
+            <div class="relative w-36 aspect-video rounded-sm overflow-hidden bg-surface-dark shrink-0 border border-cyber-purple shadow-[0_0_8px_rgba(188,19,254,0.2)] group-hover:shadow-[0_0_12px_rgba(188,19,254,0.5)] transition-all duration-300">
+                <img alt="Ep 1" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="https://i.redd.it/who-you-trusting-with-babysitting-your-5-year-old-kid-v0-wyempdktdw8c1.jpg?width=640&format=pjpg&auto=webp&s=110a38ea7f7b6f985d7ccf9edac5a535aac84b9d"/>
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition backdrop-blur-[1px]">
+                    <span class="material-symbols-outlined text-primary drop-shadow-[0_0_5px_rgba(0,243,255,1)] text-4xl">play_circle</span>
+                </div>
+                <div class="absolute bottom-0 right-0 px-1.5 py-0.5 bg-black/90 text-[10px] text-primary font-display font-bold tracking-wider border-t border-l border-primary/30">
+                    <?= $episodes[1]['duration'] ?>:10
+                </div>
+            </div>
+            <div class="flex flex-col justify-center flex-1 min-w-0">
+                <h4 class="text-sm font-bold text-white truncate group-hover:text-primary transition font-display uppercase tracking-wide">
+                    1. <?= $episodes[1]['title'] ?>
+                </h4>
+                <p class="text-xs text-gray-400 mt-1 line-clamp-2 font-body">
+                    High schooler Yuji Itadori swallows a legendary cursed finger to save his friends, accidentally becoming the host for a terrifying ancient demon.
+                </p>
+            </div>
+            <div class="flex items-center">
+                <span class="material-symbols-outlined text-gray-600 group-hover:text-cyber-purple transition text-lg">download</span>
+            </div>
+        </a>
 </div>
-<div class="absolute bottom-0 right-0 px-1.5 py-0.5 bg-black/90 text-[10px] text-primary font-display font-bold tracking-wider border-t border-l border-primary/30">24:10</div>
-</div>
-<div class="flex flex-col justify-center flex-1 min-w-0">
-<h4 class="text-sm font-bold text-white truncate group-hover:text-primary transition font-display uppercase tracking-wide">1. The Awakening</h4>
-<p class="text-xs text-gray-400 mt-1 line-clamp-2 font-body">Kael stumbles upon a mysterious ruin while scavenging for parts and awakens a dormant power.</p>
-</div>
-<div class="flex items-center">
-<span class="material-symbols-outlined text-gray-600 group-hover:text-cyber-purple transition text-lg">download</span>
-</div>
-</div>
-<div class="flex gap-3 group cursor-pointer hover:bg-white/5 p-2 -mx-2 rounded-lg transition border border-transparent hover:border-white/10">
-<div class="relative w-36 aspect-video rounded-sm overflow-hidden bg-surface-dark shrink-0 border border-cyber-purple shadow-[0_0_8px_rgba(188,19,254,0.2)] group-hover:shadow-[0_0_12px_rgba(188,19,254,0.5)] transition-all duration-300">
-<img alt="Ep 2" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0YAX2IzJnEB5Bi702qX7Rc5mLAa0XA6dGJHi6nP8wZZdsKFSR6rkoablOYYCaMkm0F0rRV6RrxMrf9pv0btaTBImQmWoyjofrHJ6fblKWgJOZX3zzghlbSULAIcTLk2UwiKOiiOSZS4ORLtU8CBhsg0IkUss-gdPksO2e83yyVtcKSfEiFmXQpfin21pjrzw1ilwddra3rH0zyWLz3v_EVsFTOp5pEQ01lMJj6dmoIuQmtx5Fu0l3fzGLE2VCpkXGplMLQ47M2xVd"/>
-<div class="absolute bottom-0 right-0 px-1.5 py-0.5 bg-black/90 text-[10px] text-primary font-display font-bold tracking-wider border-t border-l border-primary/30">23:55</div>
-</div>
-<div class="flex flex-col justify-center flex-1 min-w-0">
-<h4 class="text-sm font-bold text-white truncate group-hover:text-primary transition font-display uppercase tracking-wide">2. First Flight</h4>
-<p class="text-xs text-gray-400 mt-1 line-clamp-2 font-body">Testing the limits of the Starbound unit, Kael encounters an enemy patrol unit in deep space.</p>
-</div>
-<div class="flex items-center">
-<span class="material-symbols-outlined text-gray-600 group-hover:text-cyber-purple transition text-lg">download</span>
-</div>
-</div>
+        <a href="<?= base_url('watch/' . $episodes[2]['id_episode']) ?>" class="flex gap-3 group cursor-pointer hover:bg-white/5 p-2 -mx-2 rounded-lg transition border border-transparent hover:border-white/10 block">
+            <div class="relative w-36 aspect-video rounded-sm overflow-hidden bg-surface-dark shrink-0 border border-cyber-purple shadow-[0_0_8px_rgba(188,19,254,0.2)] group-hover:shadow-[0_0_12px_rgba(188,19,254,0.5)] transition-all duration-300">
+                <img alt="Ep 2" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="https://i0.wp.com/otakuorbit.com/wp-content/uploads/2020/10/Jujutsu-Kaisen-02.mkv0046.jpg?resize=1024%2C576&ssl=1"/>
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition backdrop-blur-[1px]">
+                    <span class="material-symbols-outlined text-primary drop-shadow-[0_0_5px_rgba(0,243,255,1)] text-4xl">play_circle</span>
+                </div>
+                <div class="absolute bottom-0 right-0 px-1.5 py-0.5 bg-black/90 text-[10px] text-primary font-display font-bold tracking-wider border-t border-l border-primary/30">
+                    <?= $episodes[2]['duration'] ?>:00
+                </div>
+            </div>
+            <div class="flex flex-col justify-center flex-1 min-w-0">
+                <h4 class="text-sm font-bold text-white truncate group-hover:text-primary transition font-display uppercase tracking-wide">
+                    2. <?= $episodes[2]['title'] ?>
+                </h4>
+                <p class="text-xs text-gray-400 mt-1 line-clamp-2 font-body">
+                     Yuji accepts a deal to postpone his execution by hunting the remaining fingers and proves his resolve to the school's eccentric principal.
+                </p>
+            </div>
+            <div class="flex items-center">
+                <span class="material-symbols-outlined text-gray-600 group-hover:text-cyber-purple transition text-lg">download</span>
+            </div>
+        </a>
 <div class="flex gap-3 group cursor-pointer hover:bg-white/5 p-2 -mx-2 rounded-lg transition border border-transparent hover:border-white/10">
 <div class="relative w-36 aspect-video rounded-sm overflow-hidden bg-surface-dark shrink-0 border border-cyber-purple shadow-[0_0_8px_rgba(188,19,254,0.2)] group-hover:shadow-[0_0_12px_rgba(188,19,254,0.5)] transition-all duration-300">
 <img alt="Ep 3" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWxBMBenzKI8EmKb4yXU74YxNdxBJRZv6xyb69vw8K5Z31gFpJBpF6GWACG7FSdkGMCFrOl41UdFb2ck8gj89GK6GRpJAL5W6KmlAxAHwJ66aq-vhD__V7g3xtMj6cLP_i4Sk4TAoQVzmLmtrcQG-pF2l9OMh6_S5bS3PK0zweIzesWmL8rzS4ewpQ17hByxd2xYbgPY94u2Vr2tiHQXokbl2Nb1AyRoOQz61oFaqUmjB7590LT4JvTAHtqDub-X3TwGVjYtup0LCa"/>

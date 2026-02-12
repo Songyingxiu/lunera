@@ -144,7 +144,7 @@
 <div class="flex overflow-x-auto gap-4 no-scrollbar pb-4 snap-x">
 <div class="relative flex-none w-[140px] snap-start group cursor-pointer">
 <div class="aspect-[2/3] w-full rounded-sm overflow-hidden relative border border-secondary/40 group-hover:border-secondary group-hover:shadow-neon-cyan transition-all duration-300">
-<img alt="Black Clover" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3ur9dOIicqPYSQ3bgC_4GrH5I4QQN0GfXf14fCG7nrNewy863rPK2EgS_qxPM2jhTZNgQ_nkJMLiSU_c8TkpBxkJUmU_vI4PSHDQKyVURYsODu813xmKvpCNjQJn753AaTTRBTssZCTypAk-JWfayMcQ2wV9mREdmuPVpojNvV0L20kLc-nGr1uGhLkrfHDqLmOv27yym_bSdCoDMnKugO8EqHjTUHCFXROjVXCNrni1qYVIXOzcJ4EI2gFfZWodjDINwhlKbIicF"/>
+<img alt="Black Clover" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/aa/Black_Clover_key_visual.jpg/250px-Black_Clover_key_visual.jpg"/>
 <div class="absolute bottom-0 left-0 w-full h-1 bg-gray-900">
 <div class="h-full bg-secondary w-[45%] shadow-[0_0_5px_#00f0ff]"></div>
 </div>
@@ -157,7 +157,7 @@
 </div>
 <div class="relative flex-none w-[140px] snap-start group cursor-pointer">
 <div class="aspect-[2/3] w-full rounded-sm overflow-hidden relative border border-primary/40 group-hover:border-primary group-hover:shadow-neon-purple transition-all duration-300">
-<img alt="Cyberpunk" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWxBMBenzKI8EmKb4yXU74YxNdxBJRZv6xyb69vw8K5Z31gFpJBpF6GWACG7FSdkGMCFrOl41UdFb2ck8gj89GK6GRpJAL5W6KmlAxAHwJ66aq-vhD__V7g3xtMj6cLP_i4Sk4TAoQVzmLmtrcQG-pF2l9OMh6_S5bS3PK0zweIzesWmL8rzS4ewpQ17hByxd2xYbgPY94u2Vr2tiHQXokbl2Nb1AyRoOQz61oFaqUmjB7590LT4JvTAHtqDub-X3TwGVjYtup0LCa"/>
+<img alt="Cyberpunk" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://upload.wikimedia.org/wikipedia/id/a/a1/Cyberpunk_Edgerunners_poster.jpg"/>
 <div class="absolute bottom-0 left-0 w-full h-1 bg-gray-900">
 <div class="h-full bg-primary w-[90%] shadow-[0_0_5px_#b026ff]"></div>
 </div>
@@ -167,7 +167,7 @@
 </div>
 <div class="relative flex-none w-[140px] snap-start group cursor-pointer">
 <div class="aspect-[2/3] w-full rounded-sm overflow-hidden relative border border-tertiary/40 group-hover:border-tertiary group-hover:shadow-neon-magenta transition-all duration-300">
-<img alt="Jujutsu Kaisen" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOQZugFL2O6lgbb55-IvchfYetp7BdIsfHJnVaGKyJZHopsy1Fri0IzKyAfYweVBDx2KiuTXHGAckGAVzPw4xSwc3eKJ1tT6d209guillOJNkF60p3nwgNlyofcwMiHelfy_yf5_L7o1RGBviAmKif8yQQUazypE2-QtnY9J2htQ2AjAmjiBdjtrutZznjHZEGbHIRSfcPhHeBSEqzruNKsTlZ1Vpg4txjR16ykU_YBCmQR3vkmTo5GYL9vO_OQOIoXlb0mM0FU13r"/>
+<img alt="Jujutsu Kaisen" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://awsimages.detik.net.id/community/media/visual/2024/02/08/jujutsu-kaisen.jpeg?w=1200"/>
 <div class="absolute bottom-0 left-0 w-full h-1 bg-gray-900">
 <div class="h-full bg-tertiary w-[10%] shadow-[0_0_5px_#ff0099]"></div>
 </div>

@@ -83,7 +83,7 @@
 </div>
 </header>
 <section class="relative w-full h-[80vh] min-h-[550px]">
-<div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDzZfpDVCpxDZoQX4Ved_PJm8CimT7q9V5W25F3Y5rrmpF4ez-P40ZQIRCgRb1OtY6e8TEli8fbI0ZoVtRZYim__E1aacRlyNPOc6AnN3B3bVv1Sq3LSiHT7i0CmEMEJrios8dCPr3HILAJehzJWSLevaO-_Tuhn-Qs47khAaBg3yQ-sk1ztCkAMJc5i69LLq7raoi0sbI_LwoZt0Eh5xog5iQlSb8kJyQA4iwEmSlr8V9zPLCeEB0D26rjyh4hLT1S5zQqFGrNtz9D'); background-position: center top;">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('https://i0.wp.com/www.animefeminist.com/wp-content/uploads/2022/10/chainsaw2.jpg?fit=810%2C452&ssl=1'); background-position: center top;">
 <div class="absolute inset-0 bg-gradient-to-b from-background-dark/60 via-transparent to-[#050508]"></div>
 <div class="absolute inset-0 bg-gradient-to-t from-[#050508] via-[#050508]/70 to-transparent"></div>
 <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
@@ -128,27 +128,28 @@
 <span class="material-symbols-outlined text-secondary text-sm shadow-neon-cyan rounded-full p-0.5">chevron_right</span>
 </div>
 <div class="flex overflow-x-auto gap-4 no-scrollbar pb-2 pr-5 snap-x">
+<a href="<?= base_url('detail/jujutsu-kaisen') ?>" class="relative flex-none w-[260px] snap-center group cursor-pointer block">
+    <div class="aspect-video w-full rounded-sm overflow-hidden relative bg-surface-dark border border-white/5 group-hover:border-secondary/50 group-hover:shadow-neon-cyan transition-all duration-300">
+        <img alt="Anime scene showing characters running" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" src="https://us.oricon-group.com/upimg/sns/1000/1591/img1200/f8cd49221ee4f40281b0d8a033a89bb3.jpg"/>
+        <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-[2px]">
+            <span class="material-symbols-outlined text-secondary text-[48px] drop-shadow-[0_0_10px_rgba(0,240,255,1)]">play_circle</span>
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-1 bg-gray-900">
+            <div class="h-full bg-gradient-to-r from-secondary to-primary w-[85%] shadow-[0_0_8px_rgba(0,240,255,0.8)]"></div>
+        </div>
+    </div>
+    <div class="mt-2 pl-1">
+        <h4 class="font-bold text-sm leading-tight text-white truncate group-hover:text-secondary transition-colors uppercase">Jujutsu Kaisen</h4>
+        <p class="text-xs text-text-secondary mt-1 font-medium flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-tertiary shadow-[0_0_5px_#ff0099]"></span>
+            S2 E14 • Thunderclap    
+        </p>
+    </div>
+</a>
+</div>
 <div class="relative flex-none w-[260px] snap-center group cursor-pointer">
 <div class="aspect-video w-full rounded-sm overflow-hidden relative bg-surface-dark border border-white/5 group-hover:border-secondary/50 group-hover:shadow-neon-cyan transition-all duration-300">
-<img alt="Anime scene showing characters running" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOQZugFL2O6lgbb55-IvchfYetp7BdIsfHJnVaGKyJZHopsy1Fri0IzKyAfYweVBDx2KiuTXHGAckGAVzPw4xSwc3eKJ1tT6d209guillOJNkF60p3nwgNlyofcwMiHelfy_yf5_L7o1RGBviAmKif8yQQUazypE2-QtnY9J2htQ2AjAmjiBdjtrutZznjHZEGbHIRSfcPhHeBSEqzruNKsTlZ1Vpg4txjR16ykU_YBCmQR3vkmTo5GYL9vO_OQOIoXlb0mM0FU13r"/>
-<div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-[2px]">
-<span class="material-symbols-outlined text-secondary text-[48px] drop-shadow-[0_0_10px_rgba(0,240,255,1)]">play_circle</span>
-</div>
-<div class="absolute bottom-0 left-0 w-full h-1 bg-gray-900">
-<div class="h-full bg-gradient-to-r from-secondary to-primary w-[85%] shadow-[0_0_8px_rgba(0,240,255,0.8)]"></div>
-</div>
-</div>
-<div class="mt-2 pl-1">
-<h4 class="font-bold text-sm leading-tight text-white truncate group-hover:text-secondary transition-colors">JUJUTSU KAISEN</h4>
-<p class="text-xs text-text-secondary mt-1 font-medium flex items-center gap-1">
-<span class="w-1.5 h-1.5 rounded-full bg-tertiary shadow-[0_0_5px_#ff0099]"></span>
-                    S2 E14 • Thunderclap
-                </p>
-</div>
-</div>
-<div class="relative flex-none w-[260px] snap-center group cursor-pointer">
-<div class="aspect-video w-full rounded-sm overflow-hidden relative bg-surface-dark border border-white/5 group-hover:border-secondary/50 group-hover:shadow-neon-cyan transition-all duration-300">
-<img alt="Anime scene dark city" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0YAX2IzJnEB5Bi702qX7Rc5mLAa0XA6dGJHi6nP8wZZdsKFSR6rkoablOYYCaMkm0F0rRV6RrxMrf9pv0btaTBImQmWoyjofrHJ6fblKWgJOZX3zzghlbSULAIcTLk2UwiKOiiOSZS4ORLtU8CBhsg0IkUss-gdPksO2e83yyVtcKSfEiFmXQpfin21pjrzw1ilwddra3rH0zyWLz3v_EVsFTOp5pEQ01lMJj6dmoIuQmtx5Fu0l3fzGLE2VCpkXGplMLQ47M2xVd"/>
+<img alt="Anime scene dark city" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" src="https://butwhytho.net/wp-content/uploads/2022/06/Spy-x-Family-Episode-9-But-Why-Tho.jpg"/>
 <div class="absolute bottom-0 left-0 w-full h-1 bg-gray-900">
 <div class="h-full bg-gradient-to-r from-secondary to-primary w-[30%] shadow-[0_0_8px_rgba(0,240,255,0.8)]"></div>
 </div>
@@ -170,7 +171,7 @@
 <div class="flex overflow-x-auto gap-3 no-scrollbar pb-2 pr-5 snap-x">
 <div class="relative flex-none w-[130px] snap-start cursor-pointer group">
 <div class="aspect-[2/3] w-full rounded-sm overflow-hidden bg-surface-dark relative border border-white/5 group-hover:border-primary/50 group-hover:shadow-neon-purple transition-all duration-300">
-<img alt="Anime poster action" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTLpmt5GRHAPlZrKmLggpWZhz-rVF_piip_xCfKEw6HtGrBoq_MqxZDY6Xsdz54Q-h5E7dgdr_FmVz9davCGF50FcmibgTPOi-WNDhEg1fKH-ClPZM4kYMD32aCULBekQovtTJim9CDcW3Yp5YPjCBDyNmAbLCDpyXL5H5RWZt17vDnojlNygsAJY2JNY6-DXNJPn1AgP5QQU9A2v4q5qoO9S414KNhMspVSPGGQh8-Pg22VWoQt3eWvxP1eUBVzrShSeiDh4tytX3"/>
+<img alt="Anime poster action" class="w-full h-full object-cover" src="https://www.yourdecoration.com/cdn/shop/files/Poster-Hells-Paradise-Key-Art-Season-1-61x91-5cm-GBYDCO608.jpg?v=1767619915"/>
 <div class="absolute top-0 right-0 bg-secondary/90 backdrop-blur-sm text-black text-[10px] font-black px-2 py-0.5 rounded-bl-lg shadow-[0_0_8px_rgba(0,240,255,0.4)]">NEW</div>
 </div>
 <p class="mt-2 text-xs font-bold text-white line-clamp-1 group-hover:text-primary transition-colors text-glow-purple">Hell's Paradise</p>
@@ -178,14 +179,14 @@
 </div>
 <div class="relative flex-none w-[130px] snap-start cursor-pointer group">
 <div class="aspect-[2/3] w-full rounded-sm overflow-hidden bg-surface-dark relative border border-white/5 group-hover:border-primary/50 group-hover:shadow-neon-purple transition-all duration-300">
-<img alt="Anime poster drama" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC20XjxdZpYbAlYuOa7af45YJZADiV1mKOlOyhJWbH-SeytGORXVaaO8i7To620hbPvPQrdSYyXFMjUEFOSw4RLYZl5ylcdWZqebFhcowXuKlqlTJUhoOneN11zYDgY1orPSrMHT_S15w0R_TewDBO6PVzJBHi1R9AdMRgTZoacQ9ARxlRG5ddzn4YzcyxX8no-tvnUH__VGjNtKMKclExE7PP3BPn1LA_J7oH9Y-qA3nnhtD0_V67PCOPcK5YZD7J7D8_VUlp-XPX1"/>
+<img alt="Anime poster drama" class="w-full h-full object-cover" src="https://media.themoviedb.org/t/p/w500/okbW9NdKRNKgIUTVA8YZAUGwIUx.jpg"/>
 </div>
 <p class="mt-2 text-xs font-bold text-white line-clamp-1 group-hover:text-primary transition-colors">Oshi No Ko</p>
 <p class="text-[10px] text-text-secondary">Subtitles</p>
 </div>
 <div class="relative flex-none w-[130px] snap-start cursor-pointer group">
 <div class="aspect-[2/3] w-full rounded-sm overflow-hidden bg-surface-dark relative border border-white/5 group-hover:border-primary/50 group-hover:shadow-neon-purple transition-all duration-300">
-<img alt="Anime poster sci-fi" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8I0V2iA4ON3WSmZOl_4zbcVzrt2rEH6JNPwP70Xu52IIYL5g0nKMp-4JlW3qTxBkdDGf0csTaEk0jLeHVQOKGKQwcV6Clobf2d_GMmWO5jMeV7iR9mtiXy9gOuCS2CAA2xRrsC0CZxGhrpOZQiEBt1nOaiIp_gA2Hkc7PK6LclYaaRLrTW3PdHO1n6RtzGQPvPfce_L_0a4jAO05wc_VrfMf4yzujvvKbiJD2x7WWCihCHc6IRHpIBcBOqSqL5GOFFQOsSLjMSgGM"/>
+<img alt="Anime poster sci-fi" class="w-full h-full object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzJ3UfaoLbba3HiHeZj_MaesjdyhdpRbe_yA&s "/>
 <div class="absolute top-0 right-0 bg-tertiary/90 backdrop-blur-sm text-white text-[10px] font-black px-2 py-0.5 rounded-bl-lg shadow-[0_0_8px_rgba(255,0,153,0.4)]">HOT</div>
 </div>
 <p class="mt-2 text-xs font-bold text-white line-clamp-1 group-hover:text-primary transition-colors text-glow-purple">Dr. STONE New World</p>
@@ -193,7 +194,7 @@
 </div>
 <div class="relative flex-none w-[130px] snap-start cursor-pointer group">
 <div class="aspect-[2/3] w-full rounded-sm overflow-hidden bg-surface-dark relative border border-white/5 group-hover:border-primary/50 group-hover:shadow-neon-purple transition-all duration-300">
-<img alt="Anime poster fantasy" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYECwmKbvato3IDnbOTB9_edCqQQi5c98_hbN--_uDlPngiSkhbQrzVuQJ_IA_GjREhLQGn0uCDd7-6cnhMPcGuiLpNzYgLsWMo5u6KITgNBrzKZ0y6t40I67ML4NumZHLL83unKO8wLdYdKyrcOPwi_trQoMYVhJFM_OwdXiAP9Elxr4JSbJZdMYUuq5YMHoBNoI-ri0SYWMOw1NdDbYaxkOaQQ0qp-oHhb-nccVl1aAfdXEt3kh8w1PhJK_9YIbbrkOWjAwzauaP"/>
+<img alt="Anime poster fantasy" class="w-full h-full object-cover" src="https://img.wattpad.com/cover/325006493-256-k526884.jpg"/>
 </div>
 <p class="mt-2 text-xs font-bold text-white line-clamp-1 group-hover:text-primary transition-colors">Demon Slayer</p>
 <p class="text-[10px] text-text-secondary">Swordsmith Village Arc</p>
@@ -210,7 +211,7 @@
 <div class="flex overflow-x-auto gap-4 no-scrollbar pb-2 pr-5 snap-x">
 <div class="relative flex-none w-[240px] snap-start cursor-pointer group">
 <div class="aspect-[16/9] w-full rounded-sm overflow-hidden bg-surface-dark relative border border-white/10 group-hover:border-tertiary/60 group-hover:shadow-neon-magenta transition-all duration-300">
-<img alt="Anime action scene with effects" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3ur9dOIicqPYSQ3bgC_4GrH5I4QQN0GfXf14fCG7nrNewy863rPK2EgS_qxPM2jhTZNgQ_nkJMLiSU_c8TkpBxkJUmU_vI4PSHDQKyVURYsODu813xmKvpCNjQJn753AaTTRBTssZCTypAk-JWfayMcQ2wV9mREdmuPVpojNvV0L20kLc-nGr1uGhLkrfHDqLmOv27yym_bSdCoDMnKugO8EqHjTUHCFXROjVXCNrni1qYVIXOzcJ4EI2gFfZWodjDINwhlKbIicF"/>
+<img alt="Anime action scene with effects" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100" src="https://lewatsfilm.com/wp-content/uploads/2023/06/Black-Clover-Sword-of-the-Wizard-King-2023-54-1024x512.jpg"/>
 <div class="absolute top-2 left-2">
 <span class="bg-black/70 backdrop-blur-md text-tertiary border border-tertiary/50 text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase tracking-wider shadow-[0_0_10px_rgba(255,0,153,0.2)]">Exclusive</span>
 </div>
@@ -222,7 +223,7 @@
 </div>
 <div class="relative flex-none w-[240px] snap-start cursor-pointer group">
 <div class="aspect-[16/9] w-full rounded-sm overflow-hidden bg-surface-dark relative border border-white/10 group-hover:border-tertiary/60 group-hover:shadow-neon-magenta transition-all duration-300">
-<img alt="Anime city neon scene" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWxBMBenzKI8EmKb4yXU74YxNdxBJRZv6xyb69vw8K5Z31gFpJBpF6GWACG7FSdkGMCFrOl41UdFb2ck8gj89GK6GRpJAL5W6KmlAxAHwJ66aq-vhD__V7g3xtMj6cLP_i4Sk4TAoQVzmLmtrcQG-pF2l9OMh6_S5bS3PK0zweIzesWmL8rzS4ewpQ17hByxd2xYbgPY94u2Vr2tiHQXokbl2Nb1AyRoOQz61oFaqUmjB7590LT4JvTAHtqDub-X3TwGVjYtup0LCa"/>
+<img alt="Anime city neon scene" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100" src="https://www.animationmagazine.net/wordpress/wp-content/uploads/Cyberpunk-Edgrunners.jpg"/>
 <div class="absolute top-2 left-2">
 <span class="bg-black/70 backdrop-blur-md text-secondary border border-secondary/50 text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase tracking-wider shadow-[0_0_10px_rgba(0,240,255,0.2)]">Simulcast</span>
 </div>
@@ -281,14 +282,14 @@
 <span class="text-[10px] font-medium">My List</span>
 </a>
 </li>
-<li class="flex-1">
-<a class="flex flex-col items-center justify-center gap-1 text-gray-500 hover:text-white transition-colors group" href="#">
-<div class="w-6 h-6 rounded-full overflow-hidden border-2 border-transparent group-hover:border-white/80 group-hover:shadow-[0_0_10px_white] transition-all">
-<img alt="User avatar tiny" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1nNhLmj8sleWRjQLrO70-_WTGuq5_i0hBPPt4og-BiRkeezsDz2sT2sA4sPq-u58rsEhXsB4-oNpKYnHMarjAphjUkALAfiu2IL9erofsUxKtQRRUHlp5GQ3B_-BgfOLlB_rogL9ZZic0r0maDDziPBkP9dyZ0oqI99Yb2DgFbercVCIETKTqT1XZVdLkEXrgqPy548Kcv0Zc1tNelTOicdEmZLXITD7ZVSBIw0135zY6tTbEGkvNi_4nq6gLxFEVMt2Nq0AnGL4n"/>
-</div>
-<span class="text-[10px] font-medium">Profile</span>
-</a>
-</li>
+    <li class="flex-1">
+        <a class="flex flex-col items-center justify-center gap-1 text-gray-500 hover:text-white transition-colors group" href="<?= base_url('profile') ?>">
+            <div class="w-6 h-6 rounded-full overflow-hidden border-2 border-transparent group-hover:border-white/80 group-hover:shadow-[0_0_10px_white] transition-all">
+                <img alt="User avatar tiny" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1nNhLmj8sleWRjQLrO70-_WTGuq5_i0hBPPt4og-BiRkeezsDz2sT2sA4sPq-u58rsEhXsB4-oNpKYnHMarjAphjUkALAfiu2IL9erofsUxKtQRRUHlp5GQ3B_-BgfOLlB_rogL9ZZic0r0maDDziPBkP9dyZ0oqI99Yb2DgFbercVCIETKTqT1XZVdLkEXrgqPy548Kcv0Zc1tNelTOicdEmZLXITD7ZVSBIw0135zY6tTbEGkvNi_4nq6gLxFEVMt2Nq0AnGL4n"/>
+            </div>
+            <span class="text-[10px] font-medium">Profile</span>
+        </a>
+    </li>
 </ul>
 </nav>
 </body></html>
