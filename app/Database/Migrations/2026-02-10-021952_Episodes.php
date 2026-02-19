@@ -13,6 +13,7 @@ class Episodes extends Migration
         'id_content'    => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
         'episode_no'    => ['type' => 'INT', 'constraint' => 5], // Episode 1, 2, dst
         'title'         => ['type' => 'VARCHAR', 'constraint' => 255],
+        'episode_thumb' => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true], // bisa kosong kalau tidak ada gambar
         'video_url'     => ['type' => 'VARCHAR', 'constraint' => 255],
         'duration'      => ['type' => 'INT', 'null' => true], // Durasi dalam menit
         'created_at'    => ['type' => 'DATETIME', 'null' => true],

@@ -14,6 +14,7 @@ class Users extends Migration
         'email'      => ['type' => 'VARCHAR', 'constraint' => 100, 'unique' => true],
         'password'   => ['type' => 'VARCHAR', 'constraint' => 255],
         'created_at' => ['type' => 'DATETIME', 'null' => true],
+        'role'       => ['type' => 'ENUM', 'constraint' => ['admin', 'user'], 'default' => 'user',]
     ]);
     $this->forge->addKey('id_user', true);
     $this->forge->createTable('users');

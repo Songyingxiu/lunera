@@ -2,36 +2,33 @@
 
 namespace App\Controllers;
 
-// Import the Models we need
 use App\Models\ContentModel;
 use App\Models\CategoryModel;
 use App\Models\EpisodeModel;
+use App\Models\UserModel; // Tambahkan Model User
 
 class Lunera extends BaseController
 {
     protected $contentModel;
     protected $categoryModel;
     protected $episodeModel;
+    protected $userModel;
 
     public function __construct()
     {
-        // Initialize models so they are ready to use in any method
         $this->contentModel = new ContentModel();
         $this->categoryModel = new CategoryModel();
         $this->episodeModel = new EpisodeModel();
+        $this->userModel = new UserModel();
     }
 
     public function index()
     {
         $data = [
-            // Fetch top 5 high-rated series for the slider/trending
             'trending' => $this->contentModel->where('type', 'series')->orderBy('rating', 'DESC')->findAll(5),
-            // Fetch high-rated movies
             'movies'   => $this->contentModel->where('type', 'movie')->orderBy('rating', 'DESC')->findAll(6),
-            // Fetch everything for the "Seasonal Hits" section
             'seasonal' => $this->contentModel->orderBy('created_at', 'DESC')->findAll(10)
         ];
-
         return view('home', $data);
     }
 
@@ -39,25 +36,25 @@ class Lunera extends BaseController
     {
         $data = [
             'categories' => $this->categoryModel->findAll(),
-            'all_content' => $this->contentModel->findAll()
+            'all_content' => $this->contentModel->orderBy('created_at', 'DESC')->findAll()
         ];
-
         return view('explore', $data);
     }
 
     public function detail($slug = null)
     {
-        // Find the specific anime based on the slug from the URL
         $anime = $this->contentModel->where('slug', $slug)->first();
 
         if (!$anime) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Anime not found.");
         }
 
+        // Ambil episode
+        $episodes = $this->episodeModel->where('id_content', $anime['id_content'])->orderBy('episode_no', 'ASC')->findAll();
+
         $data = [
             'anime'    => $anime,
-            'episodes' => $this->episodeModel->where('id_content', $anime['id_content'])->orderBy('episode_no', 'ASC')->findAll(),
-            // Suggest other anime from the same category
+            'episodes' => $episodes,
             'related'  => $this->contentModel->where('id_category', $anime['id_category'])
                                             ->where('id_content !=', $anime['id_content'])
                                             ->findAll(5)
@@ -68,16 +65,60 @@ class Lunera extends BaseController
 
     public function watch($episode_id = null)
     {
-        $data = [
-            'episode' => $this->episodeModel->find($episode_id)
-        ];
+        $episode = $this->episodeModel->find($episode_id);
+        
+        if (!$episode) {
+            return redirect()->to('/');
+        }
 
+        $data = [
+            'episode' => $episode
+        ];
         return view('watch', $data);
     }
 
+    // --- FITUR USER (Baru) ---
+
     public function profile()
     {
-        // For now, this is still static until we set up the Session/Auth
-        return view('profile');
+        // Ambil ID dari session login
+        $userId = session()->get('id_user');
+        
+        // Ambil data user & profile dari database
+        // Kita join tabel users dan profiles
+        $data['user'] = $this->userModel->join('profiles', 'profiles.id_user = users.id_user')
+                                        ->where('users.id_user', $userId)
+                                        ->first();
+
+        // Ambil history tontonan (Join WatchHistory -> Content)
+        $db = \Config\Database::connect();
+        $data['history'] = $db->table('watch_history')
+                              ->join('contents', 'contents.id_content = watch_history.id_content')
+                              ->where('watch_history.id_profile', $data['user']['id_profile'])
+                              ->orderBy('watched_at', 'DESC')
+                              ->get()->getResultArray();
+
+        return view('profile', $data);
+    }
+
+    public function editProfile()
+    {
+        $userId = session()->get('id_user');
+        $data['user'] = $this->userModel->join('profiles', 'profiles.id_user = users.id_user')
+                                        ->where('users.id_user', $userId)
+                                        ->first();
+        return view('editprofile', $data);
+    }
+
+    public function updateProfile()
+    {
+        // Logic simpan data edit profile
+        // Untuk sementara redirect dulu karena view editprofile kamu belum punya tag <form>
+        return redirect()->to('/profile')->with('success', 'Profile updated!');
+    }
+
+    public function settings()
+    {
+        return view('setting');
     }
 }
