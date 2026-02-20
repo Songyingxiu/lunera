@@ -2,7 +2,7 @@
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Lunera Admin Add Episode</title>
+<title>Lunera Admin Add Episode Updated</title>
 <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -99,15 +99,10 @@
 <section class="flex flex-col space-y-2 border-l-2 border-secondary pl-4 relative">
 <div class="absolute -left-[3px] top-0 w-[4px] h-8 bg-secondary shadow-[0_0_10px_#00f0ff]"></div>
 <h2 class="font-cyber text-2xl font-bold tracking-wider text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.3)] uppercase">ADD NEW EPISODE</h2>
-<p class="text-text-secondary text-xs uppercase tracking-[0.1em] font-medium">Content Management Protocol v2.4</p>
+<p class="text-text-secondary text-xs uppercase tracking-[0.1em] font-medium">Content Management Protocol v2.5</p>
 </section>
 <form class="space-y-6" onsubmit="event.preventDefault();">
 <div class="space-y-5">
-<div class="relative group">
-<label class="block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">EPISODE_ID</label>
-<input class="w-full bg-surface-dark border-b border-white/20 text-white placeholder-gray-600 px-4 py-3 focus:outline-none focus:border-secondary focus:bg-surface-purple/30 focus:shadow-input-glow transition-all font-display text-sm rounded-t-sm" placeholder="e.g., EP-001" type="text"/>
-<div class="absolute bottom-0 left-0 h-[1px] w-0 bg-secondary shadow-[0_0_10px_#00f0ff] group-focus-within:w-full transition-all duration-500"></div>
-</div>
 <div class="relative group">
 <label class="block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">CONTENT_ID</label>
 <input class="w-full bg-surface-dark border-b border-white/20 text-white placeholder-gray-600 px-4 py-3 focus:outline-none focus:border-secondary focus:bg-surface-purple/30 focus:shadow-input-glow transition-all font-display text-sm rounded-t-sm" placeholder="e.g., ANIME-102" type="text"/>
