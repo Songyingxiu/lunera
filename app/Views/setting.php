@@ -48,6 +48,13 @@
         .clip-path-slant-right { clip-path: polygon(0 0, 100% 0, 100% 70%, 95% 100%, 0 100%); }
         .clip-path-cut-corner { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%); }
         body { min-height: max(884px, 100dvh); }
+        
+        /* Animasi Modal Muncul */
+        .modal-enter { animation: modalFadeIn 0.3s ease-out forwards; }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 <body class="bg-background-dark font-display text-white overflow-x-hidden pb-32 min-h-screen relative">
@@ -157,22 +164,49 @@
                 <div class="absolute bottom-0 right-0 w-4 h-4 bg-tertiary blur-md"></div>
             </a>
             
-            <form action="<?= base_url('profile/delete') ?>" method="post" onsubmit="return confirm('DANGER: Are you sure you want to permanently delete your account? This action cannot be undone.');">
-                <button type="submit" class="w-full py-4 relative group overflow-hidden bg-danger/10 border border-danger/50 hover:bg-danger/20 hover:shadow-neon-red transition-all duration-300 clip-path-slant-right">
-                    <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-                    <span class="relative z-10 font-cyber font-bold tracking-[0.2em] text-danger text-sm flex items-center justify-center gap-2 group-hover:text-white transition-colors">
-                        <span class="material-symbols-outlined">delete_forever</span>
-                        DELETE ACCOUNT
-                    </span>
-                    <div class="absolute bottom-0 right-0 w-4 h-4 bg-danger blur-md"></div>
-                </button>
+            <form id="deleteAccountForm" action="<?= base_url('profile/delete') ?>" method="post" class="hidden">
             </form>
+
+            <button onclick="openDeleteModal()" type="button" class="w-full py-4 relative group overflow-hidden bg-danger/10 border border-danger/50 hover:bg-danger/20 hover:shadow-neon-red transition-all duration-300 clip-path-slant-right">
+                <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+                <span class="relative z-10 font-cyber font-bold tracking-[0.2em] text-danger text-sm flex items-center justify-center gap-2 group-hover:text-white transition-colors">
+                    <span class="material-symbols-outlined">delete_forever</span>
+                    DELETE ACCOUNT
+                </span>
+                <div class="absolute bottom-0 right-0 w-4 h-4 bg-danger blur-md"></div>
+            </button>
             
             <div class="text-center pt-2">
                 <p class="text-[10px] text-gray-600 font-cyber uppercase tracking-widest">Lunera System v2.4.1</p>
             </div>
         </section>
     </main>
+
+    <div id="deleteModal" class="fixed inset-0 z-[100] flex items-center justify-center hidden bg-black/80 backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-[#0b0510] border-2 border-danger/80 p-6 max-w-xs w-full shadow-neon-red clip-path-cut-corner modal-enter relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-16 h-16 bg-danger/20 blur-xl"></div>
+            
+            <div class="flex flex-col items-center text-center space-y-4 relative z-10">
+                <span class="material-symbols-outlined text-danger text-5xl drop-shadow-[0_0_10px_rgba(255,0,60,0.8)]">warning</span>
+                
+                <div>
+                    <h3 class="font-cyber font-bold text-white text-lg tracking-wider mb-1">SYSTEM WARNING</h3>
+                    <p class="text-xs text-text-secondary font-display">
+                        Are you sure you want to permanently delete this operative data? All watch history and favorites will be purged.
+                    </p>
+                </div>
+                
+                <div class="flex w-full gap-3 pt-2">
+                    <button onclick="closeDeleteModal()" class="flex-1 py-2 bg-surface-dark border border-white/20 text-white text-xs font-cyber tracking-widest hover:bg-white/5 transition-colors">
+                        CANCEL
+                    </button>
+                    <button onclick="confirmDelete()" class="flex-1 py-2 bg-danger/80 border border-danger text-white text-xs font-cyber tracking-widest shadow-neon-red hover:bg-danger transition-colors font-bold">
+                        CONFIRM
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <nav class="fixed bottom-0 left-0 right-0 bg-[#08080c]/90 backdrop-blur-xl border-t border-white/10 pb-6 pt-3 z-50 shadow-[0_-5px_20px_rgba(0,0,0,0.5)]">
         <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-secondary/50 to-transparent shadow-[0_0_10px_#00f0ff]"></div>
@@ -206,5 +240,25 @@
             </li>
         </ul>
     </nav>
+
+    <script>
+        const modal = document.getElementById('deleteModal');
+        const deleteForm = document.getElementById('deleteAccountForm');
+
+        function openDeleteModal() {
+            // Hilangkan class 'hidden' agar modal muncul
+            modal.classList.remove('hidden');
+        }
+
+        function closeDeleteModal() {
+            // Tambahkan class 'hidden' agar modal tertutup
+            modal.classList.add('hidden');
+        }
+
+        function confirmDelete() {
+            // Jika user klik Confirm, jalankan fungsi submit() pada form asli yang disembunyikan
+            deleteForm.submit();
+        }
+    </script>
 </body>
 </html>
