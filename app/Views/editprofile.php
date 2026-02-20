@@ -82,9 +82,7 @@
                     <h1 class="text-xl font-black italic tracking-tighter text-white font-cyber logo-text">LUNERA</h1>
                 </div>
             </div>
-            <div class="text-[10px] font-cyber text-secondary tracking-widest border border-secondary/30 px-2 py-1 rounded shadow-neon-cyan bg-secondary/5">
-                EDIT_MODE
-            </div>
+            <div class="w-6"></div>
         </div>
     </header>
 
@@ -95,17 +93,17 @@
         <section class="flex flex-col items-center gap-4">
             <div class="relative">
                 <div class="w-32 h-32 rounded-full border-2 border-tertiary shadow-neon-magenta p-1 bg-surface-purple overflow-hidden">
-                    <img alt="User avatar" class="w-full h-full object-cover rounded-full" src="<?= isset($user['avatar']) ? $user['avatar'] : 'https://lh3.googleusercontent.com/aida-public/AB6AXuC1nNhLmj8sleWRjQLrO70-_WTGuq5_i0hBPPt4og-BiRkeezsDz2sT2sA4sPq-u58rsEhXsB4-oNpKYnHMarjAphjUkALAfiu2IL9erofsUxKtQRRUHlp5GQ3B_-BgfOLlB_rogL9ZZic0r0maDDziPBkP9dyZ0oqI99Yb2DgFbercVCIETKTqT1XZVdLkEXrgqPy548Kcv0Zc1tNelTOicdEmZLXITD7ZVSBIw0135zY6tTbEGkvNi_4nq6gLxFEVMt2Nq0AnGL4n' ?>"/>
+                    <img id="avatar_preview" alt="User avatar" class="w-full h-full object-cover rounded-full" src="<?= isset($user['avatar']) ? $user['avatar'] : 'https://lh3.googleusercontent.com/aida-public/AB6AXuC1nNhLmj8sleWRjQLrO70-_WTGuq5_i0hBPPt4og-BiRkeezsDz2sT2sA4sPq-u58rsEhXsB4-oNpKYnHMarjAphjUkALAfiu2IL9erofsUxKtQRRUHlp5GQ3B_-BgfOLlB_rogL9ZZic0r0maDDziPBkP9dyZ0oqI99Yb2DgFbercVCIETKTqT1XZVdLkEXrgqPy548Kcv0Zc1tNelTOicdEmZLXITD7ZVSBIw0135zY6tTbEGkvNi_4nq6gLxFEVMt2Nq0AnGL4n' ?>"/>
                 </div>
                 <label for="avatar_upload" class="absolute bottom-0 right-0 bg-secondary text-background-dark p-2 rounded-full shadow-neon-cyan flex items-center justify-center border-2 border-background-dark hover:scale-110 transition-transform cursor-pointer">
-                    <span class="material-symbols-outlined text-lg">edit</span>
+                    <span class="material-symbols-outlined text-lg">photo_camera</span>
                 </label>
-                <input type="file" id="avatar_upload" name="avatar_file" class="hidden">
+                <input type="file" id="avatar_upload" name="avatar_file" accept="image/*" class="hidden">
             </div>
             
             <div class="text-center">
-                 <p class="text-xs text-text-secondary font-cyber">Current Avatar URL:</p>
-                 <input type="text" name="avatar" value="<?= $user['avatar'] ?? '' ?>" class="mt-1 bg-surface-purple/60 border border-secondary/40 text-secondary font-cyber text-[10px] px-2 py-1 rounded w-64 text-center tracking-wide focus:outline-none focus:border-secondary">
+                 <p class="text-[10px] text-secondary font-cyber tracking-widest uppercase mt-2">Upload New Avatar</p>
+                 <p id="file_name_display" class="text-xs text-text-secondary mt-1 hidden"></p>
             </div>
         </section>
 
@@ -113,7 +111,7 @@
             <div class="space-y-2">
                 <label class="text-[10px] font-cyber text-secondary uppercase tracking-[0.2em] ml-1">Display Name</label>
                 <div class="bg-surface-purple/80 border border-secondary/50 rounded-sm p-4 relative glow-border clip-path-cut-corner">
-                    <input name="profile_name" class="bg-transparent border-none p-0 w-full focus:ring-0 text-white font-cyber tracking-wide text-sm" type="text" value="<?= esc($user['profile_name']) ?>"/>
+                    <input name="profile_name" class="bg-transparent border-none p-0 w-full focus:ring-0 text-white font-cyber tracking-wide text-sm" type="text" value="<?= esc($user['profile_name']) ?>" required/>
                     <div class="absolute bottom-0 right-0 w-8 h-8 flex items-center justify-center opacity-20">
                         <span class="material-symbols-outlined text-xs">terminal</span>
                     </div>
@@ -125,7 +123,7 @@
                 <div class="bg-surface-purple/80 border border-secondary/50 rounded-sm p-4 relative glow-border clip-path-cut-corner">
                     <div class="flex items-center gap-1">
                         <span class="text-secondary/60 text-sm font-cyber">@</span>
-                        <input name="username" class="bg-transparent border-none p-0 w-full focus:ring-0 text-white font-cyber tracking-wide text-sm" type="text" value="<?= esc($user['username']) ?>"/>
+                        <input name="username" class="bg-transparent border-none p-0 w-full focus:ring-0 text-white font-cyber tracking-wide text-sm" type="text" value="<?= esc($user['username']) ?>" required/>
                     </div>
                 </div>
             </div>
@@ -155,39 +153,25 @@
         </section>
         
         </form>
-        </main>
+    </main>
 
-    <nav class="fixed bottom-0 left-0 right-0 bg-[#08080c]/95 backdrop-blur-xl border-t border-white/10 pb-6 pt-3 z-50 shadow-[0_-5px_20px_rgba(0,0,0,0.5)]">
-        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-secondary/50 to-transparent shadow-[0_0_10px_#00f0ff]"></div>
-        <ul class="flex justify-around items-center px-2">
-            <li class="flex-1">
-                <a class="flex flex-col items-center justify-center gap-1 text-gray-500 hover:text-white transition-colors group" href="<?= base_url('/') ?>">
-                    <span class="material-symbols-outlined text-[26px] group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">home</span>
-                    <span class="text-[10px] font-medium">Home</span>
-                </a>
-            </li>
-            <li class="flex-1">
-                <a class="flex flex-col items-center justify-center gap-1 text-gray-500 hover:text-secondary transition-colors group" href="<?= base_url('explore') ?>">
-                    <span class="material-symbols-outlined text-[26px] group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">explore</span>
-                    <span class="text-[10px] font-medium">Explore</span>
-                </a>
-            </li>
-            <li class="flex-1">
-                <a class="flex flex-col items-center justify-center gap-1 text-gray-500 hover:text-tertiary transition-colors group" href="#">
-                    <span class="material-symbols-outlined text-[26px] group-hover:drop-shadow-[0_0_8px_rgba(255,0,153,0.8)] transition-all">bookmark</span>
-                    <span class="text-[10px] font-medium">My List</span>
-                </a>
-            </li>
-            <li class="flex-1">
-                <a class="flex flex-col items-center justify-center gap-1 text-secondary group transition-colors relative" href="<?= base_url('profile') ?>">
-                    <div class="absolute -top-3 w-12 h-0.5 bg-secondary shadow-[0_0_10px_#00f0ff,0_0_20px_#00f0ff]"></div>
-                    <div class="w-6 h-6 rounded-full overflow-hidden border border-secondary shadow-[0_0_8px_rgba(0,240,255,0.6)] group-hover:shadow-[0_0_15px_rgba(0,240,255,0.8)] transition-all">
-                        <img alt="User avatar tiny" class="w-full h-full object-cover" src="<?= $user['avatar'] ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuC1nNhLmj8sleWRjQLrO70-_WTGuq5_i0hBPPt4og-BiRkeezsDz2sT2sA4sPq-u58rsEhXsB4-oNpKYnHMarjAphjUkALAfiu2IL9erofsUxKtQRRUHlp5GQ3B_-BgfOLlB_rogL9ZZic0r0maDDziPBkP9dyZ0oqI99Yb2DgFbercVCIETKTqT1XZVdLkEXrgqPy548Kcv0Zc1tNelTOicdEmZLXITD7ZVSBIw0135zY6tTbEGkvNi_4nq6gLxFEVMt2Nq0AnGL4n' ?>"/>
-                    </div>
-                    <span class="text-[10px] font-bold tracking-wide drop-shadow-[0_0_5px_rgba(0,240,255,0.8)]">Profile</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <script>
+        document.getElementById('avatar_upload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // Tampilkan preview gambar
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('avatar_preview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+                
+                // Tampilkan nama file
+                const fileNameDisplay = document.getElementById('file_name_display');
+                fileNameDisplay.textContent = file.name;
+                fileNameDisplay.classList.remove('hidden');
+            }
+        });
+    </script>
 </body>
 </html>

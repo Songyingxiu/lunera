@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Lunera Settings Updated</title>
+    <title>Lunera Settings</title>
     <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -157,14 +157,17 @@
                 <div class="absolute bottom-0 right-0 w-4 h-4 bg-tertiary blur-md"></div>
             </a>
             
-            <button class="w-full py-4 relative group overflow-hidden bg-danger/10 border border-danger/50 hover:bg-danger/20 hover:shadow-neon-red transition-all duration-300 clip-path-slant-right">
-                <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-                <span class="relative z-10 font-cyber font-bold tracking-[0.2em] text-danger text-sm flex items-center justify-center gap-2 group-hover:text-white transition-colors">
-                    <span class="material-symbols-outlined">delete_forever</span>
-                    DELETE ACCOUNT
-                </span>
-                <div class="absolute bottom-0 right-0 w-4 h-4 bg-danger blur-md"></div>
-            </button>
+            <form action="<?= base_url('profile/delete') ?>" method="post" onsubmit="return confirm('DANGER: Are you sure you want to permanently delete your account? This action cannot be undone.');">
+                <button type="submit" class="w-full py-4 relative group overflow-hidden bg-danger/10 border border-danger/50 hover:bg-danger/20 hover:shadow-neon-red transition-all duration-300 clip-path-slant-right">
+                    <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+                    <span class="relative z-10 font-cyber font-bold tracking-[0.2em] text-danger text-sm flex items-center justify-center gap-2 group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">delete_forever</span>
+                        DELETE ACCOUNT
+                    </span>
+                    <div class="absolute bottom-0 right-0 w-4 h-4 bg-danger blur-md"></div>
+                </button>
+            </form>
+            
             <div class="text-center pt-2">
                 <p class="text-[10px] text-gray-600 font-cyber uppercase tracking-widest">Lunera System v2.4.1</p>
             </div>
