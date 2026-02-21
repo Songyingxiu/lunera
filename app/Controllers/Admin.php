@@ -21,11 +21,10 @@ class Admin extends BaseController
 
     public function index()
     {
-        // Data untuk Quick Stats HUD di adminhome.php
         $data = [
             'total_users'   => $this->userModel->countAll(),
             'total_content' => $this->contentModel->countAll(),
-            'total_views'   => 12500 // Dummy atau ambil dari tabel history
+            'total_views'   => 12500 
         ];
         return view('adminhome', $data);
     }
@@ -37,9 +36,24 @@ class Admin extends BaseController
 
     public function saveEpisode()
     {
+        // RESTORED: Security Validation Protocols
+        $rules = [
+            'content_id'    => 'required|is_natural_no_zero',
+            'episode_no'    => 'required|is_natural_no_zero',
+            'title'         => 'required|min_length[3]',
+            'duration'      => 'required|is_natural_no_zero',
+            'video_url'     => 'required|valid_url',
+            'episode_thumb' => 'permit_empty|valid_url'
+        ];
+
+        if (!$this->validate($rules)) {
+            // If validation fails, we go back with the errors and the user's typed data
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
         // Ambil data dari form addepisode.php
         $data = [
-            'id_content'    => $this->request->getPost('content_id'), // Pastikan name di input form sesuai
+            'id_content'    => $this->request->getPost('content_id'),
             'episode_no'    => $this->request->getPost('episode_no'),
             'title'         => $this->request->getPost('title'),
             'duration'      => $this->request->getPost('duration'),
@@ -50,6 +64,7 @@ class Admin extends BaseController
 
         $this->episodeModel->insert($data);
 
-        return redirect()->to('/admin')->with('success', 'Episode added successfully');
+        // RESTORED: Cyberpunk Success Message
+        return redirect()->to('/admin')->with('success', 'SYSTEM_SYNC: Episode data successfully deployed to the network.');
     }
 }

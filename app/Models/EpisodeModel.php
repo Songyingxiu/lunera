@@ -10,9 +10,18 @@ class EpisodeModel extends Model
     protected $primaryKey       = 'id_episode';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $allowedFields    = ['id_content', 'episode_no', 'title', 'video_url', 'duration'];
 
+    // FIXED: Added episode_thumb and created_at to the allowed list
+    protected $allowedFields    = [
+        'id_content', 
+        'episode_no', 
+        'title', 
+        'episode_thumb', 
+        'video_url', 
+        'duration', 
+        'created_at'
+    ];
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';
-    protected $updatedField  = '';
+    protected $updatedField  = ''; // Leaving this empty as your partner did
 }
