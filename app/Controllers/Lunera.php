@@ -65,19 +65,61 @@ class Lunera extends BaseController
 
     public function watch($episode_id = null)
     {
+        // 1. Cari data episode berdasarkan ID
         $episode = $this->episodeModel->find($episode_id);
         
         if (!$episode) {
             return redirect()->to('/');
         }
 
+        // 2. Cari data Anime induknya berdasarkan id_content dari episode
+        $anime = $this->contentModel->find($episode['id_content']);
+
         $data = [
-            'episode' => $episode
+            'episode' => $episode,
+            'anime'   => $anime // Kirim data anime ke view
         ];
+        
         return view('watch', $data);
     }
 
-    // --- FITUR USER (Baru) ---
+    
+    public function myList()
+    {
+        // Ambil ID User dari Session
+        $userId = session()->get('id_user');
+        
+        // Cari id_profile milik user ini (karena tabel favorites butuh id_profile)
+        $userProfile = $this->userModel->join('profiles', 'profiles.id_user = users.id_user')
+                                       ->where('users.id_user', $userId)
+                                       ->first();
+
+        // Jika profile tidak ditemukan (sebagai pengaman tambahan)
+        if (!$userProfile) {
+            return redirect()->to('/login');
+        }
+
+        $idProfile = $userProfile['id_profile'];
+
+        // Ambil data favorit dari database
+        // Kita join tabel 'favorites' dengan 'contents' agar kita mendapat detail animenya (judul, thumbnail, dll)
+        $db = \Config\Database::connect();
+        $favorites = $db->table('favorites')
+                        ->select('contents.*, favorites.added_at')
+                        ->join('contents', 'contents.id_content = favorites.id_content')
+                        ->where('favorites.id_profile', $idProfile)
+                        ->orderBy('favorites.added_at', 'DESC') // Urutkan dari yang terbaru ditambahkan
+                        ->get()
+                        ->getResultArray();
+
+        $data = [
+            'title'     => 'Lunera - My List',
+            'favorites' => $favorites
+        ];
+
+        return view('mylist', $data);
+    }
+    
 
     public function profile()
     {

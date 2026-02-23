@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-<title>Lunera Watch</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&amp;family=Rajdhani:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <title>Watch <?= esc($anime['title'] ?? 'Anime') ?> - EP <?= esc($episode['episode_no'] ?? '') ?></title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -26,185 +28,229 @@
                         'neon-blue': '0 0 5px #00f0ff, 0 0 10px #00f0ff',
                         'neon-pink': '0 0 5px #ff00ff, 0 0 10px #ff00ff',
                         'neon-purple': '0 0 5px #bc13fe, 0 0 10px #bc13fe',
-                        'hud-border': '0 0 2px #00f0ff, inset 0 0 10px rgba(0, 240, 255, 0.2)',
                     }
                 },
             },
         }
     </script>
-<style>
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        body {
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Mengunci body agar tidak scroll dan fix 100% layar */
+        body, html {
             width: 100vw;
             height: 100vh;
+            margin: 0;
+            padding: 0;
             overflow: hidden;
             background-color: #000;
         }
-        input[type=range] {
-            -webkit-appearance: none; 
-            background: transparent; 
-        }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-        }
-        input[type=range]:focus {
-            outline: none; 
-        }
-        .hud-line {
-            background: linear-gradient(90deg, transparent 0%, #00f0ff 50%, transparent 100%);
-        }
-        .scan-line {
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0,0,0,0.1),
-                rgba(0,0,0,0.1) 1px,
-                transparent 1px,
-                transparent 2px
-            );
-        }.clip-tech {
-            clip-path: polygon(
-                10px 0, 100% 0, 
-                100% calc(100% - 10px), calc(100% - 10px) 100%, 
-                0 100%, 0 10px
-            );
-        }
-        .clip-tech-sm {
-            clip-path: polygon(
-                6px 0, 100% 0, 
-                100% calc(100% - 6px), calc(100% - 6px) 100%, 
-                0 100%, 0 6px
-            );
-        }
-    </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="bg-black font-body text-white relative w-full h-full flex items-center justify-center overflow-hidden">
-<div class="absolute inset-0 w-full h-full bg-black z-0">
-<img alt="Anime Scene" class="w-full h-full object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOQZugFL2O6lgbb55-IvchfYetp7BdIsfHJnVaGKyJZHopsy1Fri0IzKyAfYweVBDx2KiuTXHGAckGAVzPw4xSwc3eKJ1tT6d209guillOJNkF60p3nwgNlyofcwMiHelfy_yf5_L7o1RGBviAmKif8yQQUazypE2-QtnY9J2htQ2AjAmjiBdjtrutZznjHZEGbHIRSfcPhHeBSEqzruNKsTlZ1Vpg4txjR16ykU_YBCmQR3vkmTo5GYL9vO_OQOIoXlb0mM0FU13r"/>
-<div class="absolute inset-0 pointer-events-none z-0 scan-line opacity-20"></div>
-<div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/80 via-transparent to-black/60 z-0"></div>
-</div>
-<div class="absolute inset-0 z-10 flex flex-col justify-between w-full h-full pointer-events-none p-2 md:p-6">
-<div class="w-full flex justify-between items-start pointer-events-auto relative">
-<div class="absolute top-0 left-0 w-32 h-[1px] bg-cyber-blue shadow-neon-blue opacity-50"></div>
-<div class="absolute top-0 right-0 w-32 h-[1px] bg-cyber-blue shadow-neon-blue opacity-50"></div>
-<div class="absolute top-0 left-32 w-4 h-4 border-l border-t border-cyber-blue"></div>
-<div class="absolute top-0 right-32 w-4 h-4 border-r border-t border-cyber-blue"></div>
-<div class="flex items-start gap-4 mt-2">
-<button class="group w-10 h-10 clip-tech-sm bg-hud-dark border border-cyber-blue/30 hover:border-cyber-blue hover:shadow-neon-blue flex items-center justify-center transition-all duration-300">
-<span class="material-symbols-outlined text-cyber-blue group-hover:text-white text-lg">arrow_back_ios_new</span>
-</button>
-<div class="flex flex-col relative pl-2 border-l-2 border-cyber-purple">
-<h1 class="text-xl md:text-2xl font-display font-bold text-white tracking-widest uppercase drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]">
-                        Demon Slayer
-                        <span class="text-xs align-top text-cyber-blue opacity-80">v.3.0</span>
-</h1>
-<div class="flex items-center gap-2 mt-0.5">
-<span class="px-1.5 py-0.5 bg-cyber-purple/20 border border-cyber-purple/50 text-[10px] text-cyber-pink font-bold rounded-sm tracking-widest">S3:E4</span>
-<span class="text-sm text-gray-300 font-medium font-body tracking-wide uppercase">"Thank You, Tokito"</span>
-</div>
-</div>
-</div>
-<div class="flex items-center gap-6 mt-2">
-<div class="relative flex items-center bg-black/40 backdrop-blur-sm border border-cyber-blue/30 rounded-sm p-1 clip-tech-sm">
-<div class="absolute inset-0 bg-cyber-blue/5 z-0"></div>
-<button class="relative z-10 px-4 py-1 text-xs font-display font-bold bg-cyber-blue/20 text-cyber-blue border border-cyber-blue/50 shadow-neon-blue rounded-sm transition-all">SUB</button>
-<button class="relative z-10 px-4 py-1 text-xs font-display font-bold text-gray-500 hover:text-white transition-colors">DUB</button>
-<div class="absolute top-0 left-0 w-full h-[1px] bg-cyber-blue/20 animate-pulse"></div>
-</div>
-<button class="group w-10 h-10 clip-tech-sm bg-hud-dark border border-cyber-blue/30 hover:border-cyber-blue hover:shadow-neon-blue flex items-center justify-center transition-all duration-300">
-<span class="material-symbols-outlined text-cyber-blue group-hover:rotate-90 transition-transform duration-500">settings</span>
-</button>
-</div>
-</div>
-<div class="absolute inset-0 flex items-center justify-center pointer-events-auto gap-8 md:gap-16 z-20">
-<div class="absolute pointer-events-none w-[300px] h-[300px] border border-white/5 rounded-full flex items-center justify-center opacity-30">
-<div class="w-[280px] h-[280px] border border-white/5 rounded-full border-dashed"></div>
-<div class="absolute w-full h-[1px] bg-cyber-blue/10"></div>
-<div class="absolute h-full w-[1px] bg-cyber-blue/10"></div>
-</div>
-<button class="group flex flex-col items-center justify-center gap-1 opacity-60 hover:opacity-100 transition transform active:scale-95">
-<span class="material-symbols-outlined text-4xl md:text-5xl text-white drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]">replay_10</span>
-<span class="text-[10px] font-display text-cyber-blue tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">-10 SEC</span>
-</button>
-<button class="relative w-20 h-20 md:w-24 md:h-24 group flex items-center justify-center transition transform active:scale-95">
-<div class="absolute inset-0 rounded-full border-2 border-cyber-pink shadow-neon-pink opacity-80 group-hover:opacity-100 group-hover:shadow-[0_0_20px_#ff00ff] transition-all"></div>
-<div class="absolute inset-2 rounded-full border border-dashed border-cyber-blue animate-[spin_10s_linear_infinite] opacity-50"></div>
-<div class="w-16 h-16 md:w-20 md:h-20 bg-cyber-purple/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-cyber-purple/40 transition-colors">
-<span class="material-symbols-outlined text-5xl md:text-6xl text-white fill-current ml-1 drop-shadow-md">play_arrow</span>
-</div>
-</button>
-<button class="group flex flex-col items-center justify-center gap-1 opacity-60 hover:opacity-100 transition transform active:scale-95">
-<span class="material-symbols-outlined text-4xl md:text-5xl text-white drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]">forward_10</span>
-<span class="text-[10px] font-display text-cyber-blue tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">+10 SEC</span>
-</button>
-</div>
-<div class="w-full flex flex-col justify-end gap-2 pointer-events-auto pb-4 md:pb-6 relative">
-<div class="absolute bottom-0 left-0 w-64 h-[2px] bg-gradient-to-r from-cyber-purple to-transparent opacity-70"></div>
-<div class="absolute bottom-0 right-0 w-64 h-[2px] bg-gradient-to-l from-cyber-blue to-transparent opacity-70"></div>
-<div class="w-full group relative h-8 flex items-center cursor-pointer mb-2">
-<div class="absolute bottom-12 left-[35%] transform -translate-x-1/2 flex flex-col items-center opacity-0 group-hover:opacity-100 transition duration-200 pointer-events-none z-30">
-<div class="w-40 h-24 clip-tech bg-black border border-cyber-blue shadow-neon-blue overflow-hidden relative">
-<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=')] opacity-30 z-10"></div>
-<img alt="Preview" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0YAX2IzJnEB5Bi702qX7Rc5mLAa0XA6dGJHi6nP8wZZdsKFSR6rkoablOYYCaMkm0F0rRV6RrxMrf9pv0btaTBImQmWoyjofrHJ6fblKWgJOZX3zzghlbSULAIcTLk2UwiKOiiOSZS4ORLtU8CBhsg0IkUss-gdPksO2e83yyVtcKSfEiFmXQpfin21pjrzw1ilwddra3rH0zyWLz3v_EVsFTOp5pEQ01lMJj6dmoIuQmtx5Fu0l3fzGLE2VCpkXGplMLQ47M2xVd"/>
-<div class="absolute bottom-0 left-0 bg-black/60 px-2 py-0.5 text-[10px] font-display text-cyber-blue w-full text-center border-t border-cyber-blue/30">
-                            TARGET: 08:42
-                        </div>
-</div>
-<div class="h-4 w-[1px] bg-cyber-blue shadow-neon-blue"></div>
-</div>
-<div class="w-full h-[2px] bg-gray-700/50 relative flex items-center group-hover:h-[4px] transition-all duration-300">
-<div class="h-full bg-cyber-purple shadow-[0_0_10px_#bc13fe] w-[35%] relative z-10">
-<div class="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_#fff,0_0_20px_#bc13fe] scale-0 group-hover:scale-150 transition-transform"></div>
-</div>
-<div class="absolute left-0 top-0 h-full w-[55%] bg-cyber-blue/20 z-0"></div>
-<div class="absolute top-1/2 -translate-y-1/2 w-full h-[1px] bg-blue-500/0 group-hover:bg-cyber-blue/30 blur-sm transition-all"></div>
-</div>
-</div>
-<div class="flex items-center justify-between px-2">
-<div class="flex items-end gap-2 text-sm font-display tracking-wider">
-<span class="text-cyber-blue font-bold drop-shadow-[0_0_5px_#00f0ff]">08:42</span>
-<span class="text-white/30 text-xs mb-0.5">/</span>
-<span class="text-white/60">24:15</span>
-</div>
-<div class="flex items-center gap-6">
-<button class="relative group overflow-hidden px-4 py-2 bg-black/40 border border-cyber-pink/50 rounded-sm clip-tech-sm transition-all hover:bg-cyber-pink/10 hover:border-cyber-pink hover:shadow-neon-pink">
-<div class="flex items-center gap-2 relative z-10">
-<span class="material-symbols-outlined text-cyber-pink text-lg">skip_next</span>
-<span class="text-xs font-bold font-display uppercase tracking-widest text-white">Next Ep</span>
-</div>
-</button>
-<button class="text-white/70 hover:text-cyber-blue transition hover:drop-shadow-[0_0_5px_#00f0ff]">
-<span class="material-symbols-outlined">subtitles</span>
-</button>
-<button class="text-white/70 hover:text-cyber-blue transition hover:drop-shadow-[0_0_5px_#00f0ff]">
-<span class="material-symbols-outlined">cast</span>
-</button>
-<div class="relative w-12 h-12 group cursor-pointer flex items-center justify-center">
-<svg class="transform -rotate-90 w-12 h-12 absolute">
-<circle class="text-white/10" cx="24" cy="24" fill="transparent" r="18" stroke="currentColor" stroke-width="2"></circle>
-<circle class="text-cyber-blue drop-shadow-[0_0_3px_#00f0ff]" cx="24" cy="24" fill="transparent" r="18" stroke="currentColor" stroke-dasharray="113" stroke-dashoffset="25" stroke-width="2"></circle>
-</svg>
-<div class="flex flex-col items-center">
-<span class="text-[10px] font-display font-bold text-cyber-blue">5s</span>
-</div>
-<div class="absolute bottom-full right-0 mb-3 w-max px-3 py-1 bg-black/90 border border-cyber-blue/30 text-cyber-blue text-[10px] font-display uppercase tracking-wider opacity-0 group-hover:opacity-100 transition pointer-events-none clip-tech-sm">
-                            Auto-Seq: Engaged
-                        </div>
-</div>
-</div>
-</div>
-</div>
-</div>
 
-</body></html>
+        input[type=range] { -webkit-appearance: none; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; }
+        input[type=range]:focus { outline: none; }
+        
+        .scan-line {
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 1px, transparent 1px, transparent 2px);
+        }
+        .clip-tech { clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); }
+        .clip-tech-sm { clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px); }
+        
+        .hud-container { cursor: crosshair; }
+        .clickable-area { cursor: pointer; }
+    </style>
+</head>
+
+<body class="bg-black font-body text-white w-screen h-screen overflow-hidden">
+    
+    <div class="fixed inset-0 w-screen h-screen bg-black z-0 flex items-center justify-center">
+        <video id="animePlayer" class="w-full h-full object-contain" autoplay playsinline>
+            <source src="<?= esc($episode['video_url']) ?>" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <div class="fixed inset-0 pointer-events-none z-10 scan-line opacity-10"></div>
+    <div class="fixed top-0 left-0 w-full h-32 bg-gradient-to-b from-black/90 to-transparent pointer-events-none z-10"></div>
+    <div class="fixed bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10"></div>
+
+    <div class="hud-container fixed inset-0 z-20 flex flex-col justify-between w-screen h-screen p-4 md:px-12 md:py-6 lg:px-16 pointer-events-none">
+        
+        <div class="w-full flex justify-between items-start pointer-events-auto relative">
+            <div class="absolute top-0 left-0 w-24 md:w-48 h-[1px] bg-cyber-blue shadow-neon-blue opacity-50"></div>
+            <div class="absolute top-0 right-0 w-24 md:w-48 h-[1px] bg-cyber-blue shadow-neon-blue opacity-50"></div>
+            <div class="absolute top-0 left-24 md:left-48 w-3 md:w-4 h-3 md:h-4 border-l border-t border-cyber-blue opacity-50"></div>
+            <div class="absolute top-0 right-24 md:right-48 w-3 md:w-4 h-3 md:h-4 border-r border-t border-cyber-blue opacity-50"></div>
+            
+            <div class="flex items-start gap-3 md:gap-4 mt-3">
+                <a href="<?= base_url('detail/' . (isset($anime['slug']) ? esc($anime['slug']) : '')) ?>" class="clickable-area group w-8 h-8 md:w-10 md:h-10 clip-tech-sm bg-hud-dark border border-cyber-blue/30 hover:border-cyber-blue hover:shadow-neon-blue flex items-center justify-center transition-all duration-300">
+                    <span class="material-symbols-outlined text-cyber-blue group-hover:text-white text-base md:text-lg">arrow_back_ios_new</span>
+                </a>
+                <div class="flex flex-col relative pl-2 md:pl-3 border-l-2 border-cyber-purple">
+                    <h1 class="text-lg md:text-xl font-display font-bold text-white tracking-widest uppercase drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
+                        <?= esc($anime['title'] ?? 'UNKNOWN CONTENT') ?>
+                        <span class="text-[10px] md:text-xs align-top text-cyber-blue opacity-80 ml-1">v.3.0</span>
+                    </h1>
+                    <div class="flex items-center gap-2 md:gap-3 mt-1">
+                        <span class="px-1.5 py-0.5 bg-cyber-purple/20 border border-cyber-purple/50 text-[9px] md:text-[10px] text-cyber-pink font-bold rounded-sm tracking-widest uppercase">
+                            EP <?= esc($episode['episode_no']) ?>
+                        </span>
+                        <span class="text-xs md:text-sm text-gray-300 font-medium font-body tracking-wider uppercase">
+                            "<?= esc($episode['title']) ?>"
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3 md:gap-4 mt-3">
+                <div class="clickable-area relative flex items-center bg-black/40 backdrop-blur-sm border border-cyber-blue/30 rounded-sm p-1 clip-tech-sm hidden sm:flex">
+                    <div class="absolute inset-0 bg-cyber-blue/5 z-0"></div>
+                    <button class="relative z-10 px-3 md:px-4 py-1 text-[10px] md:text-xs font-display font-bold bg-cyber-blue/20 text-cyber-blue border border-cyber-blue/50 shadow-neon-blue rounded-sm transition-all">SUB</button>
+                    <button class="relative z-10 px-3 md:px-4 py-1 text-[10px] md:text-xs font-display font-bold text-gray-500 hover:text-white transition-colors">DUB</button>
+                    <div class="absolute top-0 left-0 w-full h-[1px] bg-cyber-blue/20 animate-pulse"></div>
+                </div>
+                <button class="clickable-area group w-8 h-8 md:w-10 md:h-10 clip-tech-sm bg-hud-dark border border-cyber-blue/30 hover:border-cyber-blue hover:shadow-neon-blue flex items-center justify-center transition-all duration-300">
+                    <span class="material-symbols-outlined text-cyber-blue group-hover:rotate-90 transition-transform duration-500 text-base md:text-lg">settings</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none gap-8 md:gap-14 z-30">
+            <div class="absolute pointer-events-none w-[220px] h-[220px] md:w-[320px] md:h-[320px] border border-white/5 rounded-full flex items-center justify-center opacity-20">
+                <div class="w-[200px] h-[200px] md:w-[300px] md:h-[300px] border border-white/5 rounded-full border-dashed"></div>
+                <div class="absolute w-full h-[1px] bg-cyber-blue/10"></div>
+                <div class="absolute h-full w-[1px] bg-cyber-blue/10"></div>
+            </div>
+            
+            <button onclick="skipVideo(-10)" class="clickable-area pointer-events-auto group flex flex-col items-center justify-center gap-1.5 opacity-60 hover:opacity-100 transition transform active:scale-95">
+                <span class="material-symbols-outlined text-3xl md:text-4xl lg:text-5xl text-white drop-shadow-[0_0_10px_rgba(0,240,255,0.8)]">replay_10</span>
+                <span class="text-[9px] md:text-[10px] font-display text-cyber-blue tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">-10 SEC</span>
+            </button>
+            
+            <button id="mainPlayBtn" onclick="togglePlayPause()" class="clickable-area pointer-events-auto relative w-16 h-16 md:w-20 md:h-20 group flex items-center justify-center transition transform active:scale-95">
+                <div class="absolute inset-0 rounded-full border-2 border-cyber-pink shadow-neon-pink opacity-80 group-hover:opacity-100 group-hover:shadow-[0_0_20px_#ff00ff] transition-all"></div>
+                <div class="absolute inset-2 md:inset-3 rounded-full border border-dashed border-cyber-blue animate-[spin_10s_linear_infinite] opacity-50"></div>
+                <div class="w-12 h-12 md:w-16 md:h-16 bg-cyber-purple/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-cyber-purple/40 transition-colors">
+                    <span id="playIcon" class="material-symbols-outlined text-4xl md:text-5xl text-white fill-current drop-shadow-md">pause</span>
+                </div>
+            </button>
+            
+            <button onclick="skipVideo(10)" class="clickable-area pointer-events-auto group flex flex-col items-center justify-center gap-1.5 opacity-60 hover:opacity-100 transition transform active:scale-95">
+                <span class="material-symbols-outlined text-3xl md:text-4xl lg:text-5xl text-white drop-shadow-[0_0_10px_rgba(0,240,255,0.8)]">forward_10</span>
+                <span class="text-[9px] md:text-[10px] font-display text-cyber-blue tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">+10 SEC</span>
+            </button>
+        </div>
+
+        <div class="w-full flex flex-col justify-end gap-2 md:gap-3 pointer-events-auto relative z-30">
+            <div class="absolute bottom-0 left-0 w-48 md:w-80 h-[2px] bg-gradient-to-r from-cyber-purple to-transparent opacity-70"></div>
+            <div class="absolute bottom-0 right-0 w-48 md:w-80 h-[2px] bg-gradient-to-l from-cyber-blue to-transparent opacity-70"></div>
+            
+            <div class="clickable-area w-full group relative h-8 flex items-center cursor-pointer mb-1 md:mb-2">
+                <div class="w-full h-[2px] md:h-[3px] bg-gray-700/50 relative flex items-center group-hover:h-[4px] md:group-hover:h-[5px] transition-all duration-300 rounded-full">
+                    <div id="progressBar" class="h-full bg-cyber-purple shadow-[0_0_15px_#bc13fe] w-[0%] relative z-10 rounded-l-full pointer-events-none">
+                        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 md:w-3 md:h-3 bg-white rounded-full shadow-[0_0_10px_#fff,0_0_20px_#bc13fe] scale-0 group-hover:scale-100 transition-transform"></div>
+                    </div>
+                    <div class="absolute left-0 top-0 h-full w-full bg-transparent z-0 cursor-pointer" onclick="seekVideo(event)"></div>
+                </div>
+            </div>
+            
+            <div class="flex items-center justify-between px-2">
+                <div class="flex items-end gap-2 text-xs md:text-sm font-display tracking-wider">
+                    <span id="currentTimeDisplay" class="text-cyber-blue font-bold drop-shadow-[0_0_8px_#00f0ff]">00:00</span>
+                    <span class="text-white/30 text-[10px] md:text-xs mb-0.5">/</span>
+                    <span id="durationDisplay" class="text-white/60">
+                        <?= esc($episode['duration']) ?>:00
+                    </span>
+                </div>
+                
+                <div class="flex items-center gap-4 md:gap-6">
+                    <button class="clickable-area relative group overflow-hidden px-3 md:px-4 py-1.5 md:py-2 bg-black/60 backdrop-blur-sm border border-cyber-pink/50 rounded-sm clip-tech-sm transition-all hover:bg-cyber-pink/20 hover:border-cyber-pink hover:shadow-neon-pink">
+                        <div class="flex items-center gap-1.5 md:gap-2 relative z-10">
+                            <span class="material-symbols-outlined text-cyber-pink text-base md:text-lg">skip_next</span>
+                            <span class="text-[10px] md:text-xs font-bold font-display uppercase tracking-widest text-white">Next Ep</span>
+                        </div>
+                    </button>
+                    
+                    <button class="clickable-area text-white/70 hover:text-cyber-blue hover:scale-110 transition-all hover:drop-shadow-[0_0_8px_#00f0ff] hidden sm:block">
+                        <span class="material-symbols-outlined text-xl md:text-2xl">subtitles</span>
+                    </button>
+                    
+                    <button class="clickable-area text-white/70 hover:text-cyber-blue hover:scale-110 transition-all hover:drop-shadow-[0_0_8px_#00f0ff] hidden sm:block">
+                        <span class="material-symbols-outlined text-xl md:text-2xl">cast</span>
+                    </button>
+                    
+                    <button class="clickable-area text-white/70 hover:text-cyber-blue hover:scale-110 transition-all hover:drop-shadow-[0_0_8px_#00f0ff] ml-1">
+                        <span class="material-symbols-outlined text-2xl" onclick="toggleFullScreen()">fullscreen</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('animePlayer');
+        const playIcon = document.getElementById('playIcon');
+        const progressBar = document.getElementById('progressBar');
+        const currentTimeDisplay = document.getElementById('currentTimeDisplay');
+        const durationDisplay = document.getElementById('durationDisplay');
+
+        // Pastikan format durasi terupdate begitu metadata video terload
+        video.addEventListener('loadedmetadata', () => {
+            durationDisplay.innerText = formatTime(video.duration);
+        });
+
+        function togglePlayPause() {
+            if (video.paused) {
+                video.play();
+                playIcon.innerText = 'pause';
+            } else {
+                video.pause();
+                playIcon.innerText = 'play_arrow';
+            }
+        }
+
+        function skipVideo(seconds) {
+            video.currentTime += seconds;
+        }
+
+        function formatTime(timeInSeconds) {
+            if (isNaN(timeInSeconds)) return "00:00";
+            const minutes = Math.floor(timeInSeconds / 60);
+            const seconds = Math.floor(timeInSeconds % 60);
+            return `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+
+        video.addEventListener('timeupdate', () => {
+            const current = video.currentTime;
+            const duration = video.duration;
+            
+            if (!isNaN(duration) && duration > 0) {
+                const progressPercent = (current / duration) * 100;
+                progressBar.style.width = `${progressPercent}%`;
+                currentTimeDisplay.innerText = formatTime(current);
+            }
+        });
+
+        video.addEventListener('pause', () => { playIcon.innerText = 'play_arrow'; });
+        video.addEventListener('play', () => { playIcon.innerText = 'pause'; });
+
+        function seekVideo(e) {
+            const rect = e.target.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const percent = clickX / rect.width;
+            video.currentTime = percent * video.duration;
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -167,7 +167,7 @@ class UserSeeder extends Seeder
         $profileVestia = [
             'id_user'      => $idVestia,
             'profile_name' => 'Vestia',
-            'avatar'       => 'https://i.pinimg.com/736x/c7/dc/43/c7dc4323539ccbbc78661d221c356bc7.jpg',
+            'avatar'       => 'https://i.pinimg.com/736x/f0/06/72/f00672c8f1885a970ff05fcd55faed27.jpg',
         ];
         $this->db->table('profiles')->insert($profileVestia);
         $idProfileVestia = $this->db->insertID();

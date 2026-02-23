@@ -68,16 +68,20 @@
     <div class="fixed inset-0 bg-cyber-circuit opacity-30 -z-10"></div>
     <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full -z-10"></div>
 
-    <div class="flex flex-col items-center mb-8 space-y-4">
-        <div class="relative">
-            <div class="absolute inset-0 bg-secondary blur-2xl opacity-20 animate-pulse"></div>
-            <span class="material-symbols-outlined text-[100px] text-secondary leading-none select-none drop-shadow-[0_0_15px_#00f0ff] -scale-x-100" style="font-variation-settings: 'FILL' 0, 'wght' 200;">
-                brightness_3
-            </span>
-        </div>
-        <h1 class="font-cyber text-5xl font-black tracking-widest text-white italic drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]">
-            LUNERA
-        </h1>
+    <div class="flex flex-col items-center mb-10">
+    <div class="relative mb-2">
+        <div class="absolute inset-0 bg-secondary blur-3xl opacity-20 animate-pulse"></div>
+        <span class="material-symbols-outlined text-secondary filled relative z-10" 
+              style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48; font-size: 80px; text-shadow: 0 0 20px rgba(0, 240, 255, 0.8);">
+            bedtime
+        </span>
+    </div>
+    
+    <h1 class="font-cyber text-5xl font-black tracking-[0.2em] text-white italic drop-shadow-[0_0_15px_rgba(176,38,255,0.7)]">
+        LUNERA
+    </h1>
+    
+    <div class="w-24 h-1 bg-gradient-to-r from-transparent via-secondary to-transparent mt-2 opacity-50"></div>
     </div>
 
     <?php if(session()->getFlashdata('error')): ?>
