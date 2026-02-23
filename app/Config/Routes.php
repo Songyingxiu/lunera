@@ -32,3 +32,13 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
     $routes->get('add-episode', 'Admin::addEpisode'); // addepisode
     $routes->post('save-episode', 'Admin::saveEpisode'); // Process save new episode
 });
+
+// ROUTES API
+$routes->group('api', function ($routes) {
+    
+    // Hanya mengaktifkan method 'index' (GET All) dan 'show' (GET by ID)
+    $routes->resource('contents', [
+        'controller' => 'Api\LuneraApi',
+        'only'       => ['index', 'show']
+    ]);
+});
