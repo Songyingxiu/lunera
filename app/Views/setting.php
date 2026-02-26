@@ -57,58 +57,65 @@
         }
     </style>
 </head>
-<body class="bg-background-dark font-display text-white overflow-x-hidden pb-32 min-h-screen relative">
+<body class="bg-background-dark font-display text-white overflow-x-hidden min-h-screen relative flex flex-col md:items-center">
     <div class="fixed inset-0 bg-gradient-to-br from-[#0a0a1a] via-[#050508] to-[#120024] -z-20"></div>
     <div class="fixed inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay -z-10"></div>
     <div class="fixed inset-0 bg-cyber-grid bg-[size:40px_40px] opacity-10 -z-10"></div>
     <div class="fixed top-0 left-0 right-0 h-96 bg-gradient-to-b from-primary/10 to-transparent -z-10 blur-3xl"></div>
     
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background-dark/90 backdrop-blur-md border-b border-white/5">
-        <div class="relative flex items-center justify-between px-4 py-4 pt-6">
-            <a href="<?= base_url('profile') ?>" class="z-20 text-text-secondary hover:text-white transition-colors">
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background-dark/80 backdrop-blur-md border-b border-white/5 shadow-[0_5px_20px_rgba(0,0,0,0.5)]">
+        <div class="flex items-center justify-between px-4 py-4 pt-6 max-w-2xl mx-auto w-full">
+            <a href="<?= base_url('profile') ?>" class="z-20 text-text-secondary hover:text-white transition-colors p-2 hover:bg-white/5 rounded-full">
                 <span class="material-symbols-outlined">arrow_back</span>
             </a>
-            <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+            <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none pt-2">
                 <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-secondary -scale-x-100" style="font-size: 20px; text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);">brightness_3</span>
-                    <h1 class="text-xl font-black italic tracking-tighter text-white font-cyber" style="text-shadow: 0 0 10px rgba(176, 38, 255, 0.6);">LUNERA</h1>
+                    <span class="material-symbols-outlined text-secondary filled" 
+                        style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48; font-size: 24px; text-shadow: 0 0 12px rgba(0, 240, 255, 0.8);">
+                        bedtime
+                    </span>
+                    <h1 class="text-xl font-black italic tracking-tight text-white font-cyber" 
+                        style="text-shadow: 0 0 10px rgba(176, 38, 255, 0.7);">
+                        LUNERA
+                    </h1>
                 </div>
             </div>
-            <div class="w-6"></div>
+            <div class="w-10"></div>
         </div>
     </header>
 
-    <main class="relative z-10 pt-24 px-5 space-y-8">
+    <main class="relative z-10 w-full max-w-2xl mx-auto pt-28 pb-16 px-5 space-y-10">
+        
         <section class="space-y-4">
             <div class="flex items-center gap-4">
-                <h2 class="text-sm font-bold text-secondary font-cyber tracking-widest uppercase glow-text-cyan">Account</h2>
+                <h2 class="text-sm md:text-base font-bold text-secondary font-cyber tracking-widest uppercase text-shadow-[0_0_8px_#00f0ff]">Account</h2>
                 <div class="h-[1px] flex-grow bg-gradient-to-r from-secondary to-transparent shadow-[0_0_8px_#00f0ff]"></div>
             </div>
-            <div class="space-y-3">
-                <a href="<?= base_url('profile/edit') ?>" class="block w-full group bg-surface-purple/40 backdrop-blur-sm border border-white/5 hover:border-secondary/50 rounded-sm p-4 relative overflow-hidden transition-all duration-300 clip-path-cut-corner text-left cursor-pointer">
+            <div class="space-y-4">
+                <a href="<?= base_url('profile/edit') ?>" class="block w-full group bg-surface-purple/40 backdrop-blur-sm border border-white/5 hover:border-secondary/50 rounded-sm p-5 relative overflow-hidden transition-all duration-300 clip-path-cut-corner text-left cursor-pointer">
                     <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_10px_#00f0ff]"></div>
+                    <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_10px_#00f0ff]"></div>
                     <div class="flex items-center justify-between relative z-10">
-                        <div class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-text-secondary group-hover:text-white transition-colors">badge</span>
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-text-secondary group-hover:text-white transition-colors text-2xl md:text-3xl">badge</span>
                             <div>
-                                <p class="text-sm font-bold text-white font-cyber tracking-wide">Edit Profile</p>
-                                <p class="text-[10px] text-text-secondary">Update personal data</p>
+                                <p class="text-sm md:text-base font-bold text-white font-cyber tracking-wide">Edit Profile</p>
+                                <p class="text-xs text-text-secondary mt-1">Update personal data and avatar</p>
                             </div>
                         </div>
                         <span class="material-symbols-outlined text-text-secondary group-hover:text-secondary transition-colors">chevron_right</span>
                     </div>
                 </a>
                 
-                <button class="w-full group bg-surface-purple/40 backdrop-blur-sm border border-white/5 hover:border-secondary/50 rounded-sm p-4 relative overflow-hidden transition-all duration-300 clip-path-cut-corner text-left">
+                <button class="w-full group bg-surface-purple/40 backdrop-blur-sm border border-white/5 hover:border-secondary/50 rounded-sm p-5 relative overflow-hidden transition-all duration-300 clip-path-cut-corner text-left">
                     <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_10px_#00f0ff]"></div>
+                    <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_10px_#00f0ff]"></div>
                     <div class="flex items-center justify-between relative z-10">
-                        <div class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-text-secondary group-hover:text-white transition-colors">mail</span>
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-text-secondary group-hover:text-white transition-colors text-2xl md:text-3xl">mail</span>
                             <div>
-                                <p class="text-sm font-bold text-white font-cyber tracking-wide">Update Email</p>
-                                <p class="text-[10px] text-text-secondary">Connected Account</p>
+                                <p class="text-sm md:text-base font-bold text-white font-cyber tracking-wide">Update Email</p>
+                                <p class="text-xs text-text-secondary mt-1">Manage connected account</p>
                             </div>
                         </div>
                         <span class="material-symbols-outlined text-text-secondary group-hover:text-secondary transition-colors">edit</span>
@@ -119,33 +126,34 @@
 
         <section class="space-y-4">
             <div class="flex items-center gap-4">
-                <h2 class="text-sm font-bold text-secondary font-cyber tracking-widest uppercase glow-text-cyan">Preferences</h2>
+                <h2 class="text-sm md:text-base font-bold text-secondary font-cyber tracking-widest uppercase text-shadow-[0_0_8px_#00f0ff]">Preferences</h2>
                 <div class="h-[1px] flex-grow bg-gradient-to-r from-secondary to-transparent shadow-[0_0_8px_#00f0ff]"></div>
             </div>
-            <div class="space-y-3">
-                <div class="w-full bg-surface-purple/40 backdrop-blur-sm border border-white/5 rounded-sm p-4 relative overflow-hidden clip-path-cut-corner flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-text-secondary">notifications</span>
+            <div class="space-y-4">
+                <div class="w-full bg-surface-purple/40 backdrop-blur-sm border border-white/5 rounded-sm p-5 relative overflow-hidden clip-path-cut-corner flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-text-secondary text-2xl md:text-3xl">notifications</span>
                         <div>
-                            <p class="text-sm font-bold text-white font-cyber tracking-wide">Notifications</p>
-                            <p class="text-[10px] text-text-secondary">Push alerts for new eps</p>
+                            <p class="text-sm md:text-base font-bold text-white font-cyber tracking-wide">Notifications</p>
+                            <p class="text-xs text-text-secondary mt-1">Push alerts for new episodes</p>
                         </div>
                     </div>
                     <label class="relative inline-flex items-center cursor-pointer">
                         <input checked="" class="sr-only peer" type="checkbox" value=""/>
-                        <div class="w-11 h-6 bg-gray-800/80 peer-focus:outline-none rounded-sm border border-gray-600 peer-checked:bg-secondary/20 peer-checked:border-secondary peer-checked:shadow-[0_0_10px_rgba(0,240,255,0.4)] transition-all"></div>
-                        <div class="absolute top-[2px] left-[2px] bg-gray-400 peer-checked:bg-secondary peer-checked:translate-x-full peer-checked:shadow-[0_0_8px_#00f0ff] h-5 w-5 transition-all rounded-sm"></div>
+                        <div class="w-12 h-6 md:h-7 bg-gray-800/80 peer-focus:outline-none rounded-sm border border-gray-600 peer-checked:bg-secondary/20 peer-checked:border-secondary peer-checked:shadow-[0_0_10px_rgba(0,240,255,0.4)] transition-all"></div>
+                        <div class="absolute top-[2px] left-[2px] bg-gray-400 peer-checked:bg-secondary peer-checked:translate-x-full peer-checked:shadow-[0_0_8px_#00f0ff] h-5 w-5 md:h-6 md:w-5 transition-all rounded-sm"></div>
                     </label>
                 </div>
-                <button class="w-full group bg-surface-purple/40 backdrop-blur-sm border border-white/5 hover:border-secondary/50 rounded-sm p-4 relative overflow-hidden transition-all duration-300 clip-path-cut-corner text-left">
+                
+                <button class="w-full group bg-surface-purple/40 backdrop-blur-sm border border-white/5 hover:border-secondary/50 rounded-sm p-5 relative overflow-hidden transition-all duration-300 clip-path-cut-corner text-left">
                     <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_10px_#00f0ff]"></div>
+                    <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_10px_#00f0ff]"></div>
                     <div class="flex items-center justify-between relative z-10">
-                        <div class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-text-secondary group-hover:text-white transition-colors">closed_caption</span>
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-text-secondary group-hover:text-white transition-colors text-2xl md:text-3xl">closed_caption</span>
                             <div>
-                                <p class="text-sm font-bold text-white font-cyber tracking-wide">Subtitles & Audio</p>
-                                <p class="text-[10px] text-text-secondary">Default: English / Japanese</p>
+                                <p class="text-sm md:text-base font-bold text-white font-cyber tracking-wide">Subtitles & Audio</p>
+                                <p class="text-xs text-text-secondary mt-1">Default: English / Japanese</p>
                             </div>
                         </div>
                         <span class="material-symbols-outlined text-text-secondary group-hover:text-secondary transition-colors">chevron_right</span>
@@ -154,109 +162,73 @@
             </div>
         </section>
 
-        <section class="space-y-4 pt-4">
-            <a href="<?= base_url('logout') ?>" class="block w-full text-center py-4 relative group overflow-hidden bg-tertiary/10 border border-tertiary/50 hover:bg-tertiary/20 hover:shadow-neon-magenta transition-all duration-300 clip-path-slant-right cursor-pointer">
+        <section class="space-y-4 pt-6 mt-6 border-t border-white/5">
+            <a href="<?= base_url('logout') ?>" class="block w-full text-center py-4 md:py-5 relative group overflow-hidden bg-tertiary/10 border border-tertiary/50 hover:bg-tertiary/20 hover:shadow-neon-magenta transition-all duration-300 clip-path-slant-right cursor-pointer">
                 <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-                <span class="relative z-10 font-cyber font-bold tracking-[0.2em] text-tertiary text-sm flex items-center justify-center gap-2 group-hover:text-white transition-colors">
+                <span class="relative z-10 font-cyber font-bold tracking-[0.2em] md:tracking-[0.3em] text-tertiary text-sm md:text-base flex items-center justify-center gap-3 group-hover:text-white transition-colors">
                     <span class="material-symbols-outlined">logout</span>
                     LOGOUT
                 </span>
-                <div class="absolute bottom-0 right-0 w-4 h-4 bg-tertiary blur-md"></div>
+                <div class="absolute bottom-0 right-0 w-6 h-6 bg-tertiary blur-md"></div>
             </a>
             
             <form id="deleteAccountForm" action="<?= base_url('profile/delete') ?>" method="post" class="hidden">
             </form>
 
-            <button onclick="openDeleteModal()" type="button" class="w-full py-4 relative group overflow-hidden bg-danger/10 border border-danger/50 hover:bg-danger/20 hover:shadow-neon-red transition-all duration-300 clip-path-slant-right">
+            <button onclick="openDeleteModal()" type="button" class="w-full py-4 md:py-5 relative group overflow-hidden bg-danger/10 border border-danger/50 hover:bg-danger/20 hover:shadow-neon-red transition-all duration-300 clip-path-slant-right mt-4">
                 <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-                <span class="relative z-10 font-cyber font-bold tracking-[0.2em] text-danger text-sm flex items-center justify-center gap-2 group-hover:text-white transition-colors">
+                <span class="relative z-10 font-cyber font-bold tracking-[0.2em] md:tracking-[0.3em] text-danger text-sm md:text-base flex items-center justify-center gap-3 group-hover:text-white transition-colors">
                     <span class="material-symbols-outlined">delete_forever</span>
                     DELETE ACCOUNT
                 </span>
-                <div class="absolute bottom-0 right-0 w-4 h-4 bg-danger blur-md"></div>
+                <div class="absolute bottom-0 right-0 w-6 h-6 bg-danger blur-md"></div>
             </button>
             
-            <div class="text-center pt-2">
-                <p class="text-[10px] text-gray-600 font-cyber uppercase tracking-widest">Lunera System v2.4.1</p>
+            <div class="text-center pt-6">
+                <p class="text-xs text-gray-600 font-cyber uppercase tracking-widest">Lunera System v2.4.1</p>
             </div>
         </section>
     </main>
 
     <div id="deleteModal" class="fixed inset-0 z-[100] flex items-center justify-center hidden bg-black/80 backdrop-blur-sm transition-opacity duration-300">
-        <div class="bg-[#0b0510] border-2 border-danger/80 p-6 max-w-xs w-full shadow-neon-red clip-path-cut-corner modal-enter relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-16 h-16 bg-danger/20 blur-xl"></div>
+        <div class="bg-[#0b0510] border-2 border-danger/80 p-6 md:p-8 max-w-sm w-full shadow-neon-red clip-path-cut-corner modal-enter relative overflow-hidden mx-4">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-danger/20 blur-2xl"></div>
             
-            <div class="flex flex-col items-center text-center space-y-4 relative z-10">
-                <span class="material-symbols-outlined text-danger text-5xl drop-shadow-[0_0_10px_rgba(255,0,60,0.8)]">warning</span>
+            <div class="flex flex-col items-center text-center space-y-5 relative z-10">
+                <span class="material-symbols-outlined text-danger text-6xl drop-shadow-[0_0_15px_rgba(255,0,60,0.8)]">warning</span>
                 
                 <div>
-                    <h3 class="font-cyber font-bold text-white text-lg tracking-wider mb-1">SYSTEM WARNING</h3>
-                    <p class="text-xs text-text-secondary font-display">
+                    <h3 class="font-cyber font-bold text-white text-xl tracking-wider mb-2">SYSTEM WARNING</h3>
+                    <p class="text-sm text-text-secondary font-display leading-relaxed">
                         Are you sure you want to permanently delete this operative data? All watch history and favorites will be purged.
                     </p>
                 </div>
                 
-                <div class="flex w-full gap-3 pt-2">
-                    <button onclick="closeDeleteModal()" class="flex-1 py-2 bg-surface-dark border border-white/20 text-white text-xs font-cyber tracking-widest hover:bg-white/5 transition-colors">
-                        CANCEL
+                <div class="flex w-full gap-4 pt-4">
+                    <button onclick="closeDeleteModal()" class="flex-1 py-3 bg-surface-dark border border-white/20 text-white text-sm font-cyber tracking-widest hover:bg-white/5 transition-colors uppercase">
+                        Cancel
                     </button>
-                    <button onclick="confirmDelete()" class="flex-1 py-2 bg-danger/80 border border-danger text-white text-xs font-cyber tracking-widest shadow-neon-red hover:bg-danger transition-colors font-bold">
-                        CONFIRM
+                    <button onclick="confirmDelete()" class="flex-1 py-3 bg-danger/80 border border-danger text-white text-sm font-cyber tracking-widest shadow-neon-red hover:bg-danger transition-colors font-bold uppercase">
+                        Confirm
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <nav class="fixed bottom-0 left-0 right-0 bg-[#08080c]/90 backdrop-blur-xl border-t border-white/10 pb-6 pt-3 z-50 shadow-[0_-5px_20px_rgba(0,0,0,0.5)]">
-        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-secondary/50 to-transparent shadow-[0_0_10px_#00f0ff]"></div>
-        <ul class="flex justify-around items-center px-2">
-            <li class="flex-1">
-                <a class="flex flex-col items-center justify-center gap-1 text-gray-500 hover:text-white transition-colors group" href="<?= base_url('/') ?>">
-                    <span class="material-symbols-outlined text-[26px] group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">home</span>
-                    <span class="text-[10px] font-medium">Home</span>
-                </a>
-            </li>
-            <li class="flex-1">
-                <a class="flex flex-col items-center justify-center gap-1 text-gray-500 hover:text-secondary transition-colors group" href="<?= base_url('explore') ?>">
-                    <span class="material-symbols-outlined text-[26px] group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">explore</span>
-                    <span class="text-[10px] font-medium">Explore</span>
-                </a>
-            </li>
-            <li class="flex-1">
-                <a class="flex flex-col items-center justify-center gap-1 text-gray-500 hover:text-tertiary transition-colors group" href="#">
-                    <span class="material-symbols-outlined text-[26px] group-hover:drop-shadow-[0_0_8px_rgba(255,0,153,0.8)] transition-all">bookmark</span>
-                    <span class="text-[10px] font-medium">My List</span>
-                </a>
-            </li>
-            <li class="flex-1">
-                <a class="flex flex-col items-center justify-center gap-1 text-secondary group transition-colors relative" href="<?= base_url('profile') ?>">
-                    <div class="absolute -top-3 w-12 h-0.5 bg-secondary shadow-[0_0_10px_#00f0ff,0_0_20px_#00f0ff]"></div>
-                    <div class="w-6 h-6 rounded-full overflow-hidden border border-secondary shadow-[0_0_8px_rgba(0,240,255,0.6)] group-hover:shadow-[0_0_15px_rgba(0,240,255,0.8)] transition-all">
-                        <img alt="User avatar tiny" class="w-full h-full object-cover" src="<?= isset($user['avatar']) ? $user['avatar'] : 'https://lh3.googleusercontent.com/aida-public/AB6AXuC1nNhLmj8sleWRjQLrO70-_WTGuq5_i0hBPPt4og-BiRkeezsDz2sT2sA4sPq-u58rsEhXsB4-oNpKYnHMarjAphjUkALAfiu2IL9erofsUxKtQRRUHlp5GQ3B_-BgfOLlB_rogL9ZZic0r0maDDziPBkP9dyZ0oqI99Yb2DgFbercVCIETKTqT1XZVdLkEXrgqPy548Kcv0Zc1tNelTOicdEmZLXITD7ZVSBIw0135zY6tTbEGkvNi_4nq6gLxFEVMt2Nq0AnGL4n' ?>"/>
-                    </div>
-                    <span class="text-[10px] font-bold tracking-wide drop-shadow-[0_0_5px_rgba(0,240,255,0.8)]">Profile</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
     <script>
         const modal = document.getElementById('deleteModal');
         const deleteForm = document.getElementById('deleteAccountForm');
 
         function openDeleteModal() {
-            // Hilangkan class 'hidden' agar modal muncul
             modal.classList.remove('hidden');
         }
 
         function closeDeleteModal() {
-            // Tambahkan class 'hidden' agar modal tertutup
             modal.classList.add('hidden');
         }
 
         function confirmDelete() {
-            // Jika user klik Confirm, jalankan fungsi submit() pada form asli yang disembunyikan
             deleteForm.submit();
         }
     </script>

@@ -16,12 +16,14 @@ $routes->get('logout', 'Auth::logout');
 $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('/', 'Lunera::index');                     // Home
     $routes->get('explore', 'Lunera::explore');             // Explore page
+    $routes->get('mylist', 'Lunera::myList');
     $routes->get('detail/(:segment)', 'Lunera::detail/$1'); // Detail Anime
     $routes->get('watch/(:num)', 'Lunera::watch/$1');       // Nonton Video
     $routes->get('profile', 'Lunera::profile');             // Profile View
     $routes->get('profile/edit', 'Lunera::editProfile');    // Edit Profile
     $routes->post('profile/update', 'Lunera::updateProfile'); // Process save profile
-    $routes->get('settings', 'Lunera::settings');           // Setting
+    $routes->get('settings', 'Lunera::settings'); 
+    $routes->get('lunera/toggleFavorite/(:num)', 'Lunera::toggleFavorite/$1');          // Setting
 });
 
 // 3. ADMIN ROUTES (Wajib Login + Role Admin)
