@@ -68,7 +68,7 @@
     <main class="relative z-10 w-full pt-0 md:pl-[17rem] max-w-7xl mx-auto">
         
         <section class="relative w-full h-[60vh] md:h-[450px] lg:h-[550px] min-h-[400px] md:mt-[76px] md:rounded-bl-3xl overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.6)] group">
-            <div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('https://i0.wp.com/www.animefeminist.com/wp-content/uploads/2022/10/chainsaw2.jpg?fit=810%2C452&ssl=1'); background-position: center top;">
+            <div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" style="background-image: url('https://wallpapers-clan.com/wp-content/uploads/2024/08/chainsaw-man-denji-devil-gif-desktop-wallpaper-preview.gif'); background-position: center top;">
                 <div class="absolute inset-0 bg-gradient-to-b from-background-dark/80 via-transparent to-[#050508]/90"></div>
                 <div class="absolute inset-0 bg-gradient-to-r from-[#050508]/90 via-[#050508]/40 to-transparent"></div>
                 <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
