@@ -116,80 +116,69 @@
                     <span class="material-symbols-outlined text-secondary text-sm md:text-base shadow-neon-cyan rounded-full p-0.5 cursor-pointer hover:bg-secondary/20 transition-colors">chevron_right</span>
                 </div>
                 <div class="flex overflow-x-auto gap-4 md:gap-6 no-scrollbar pb-2 pr-5 md:pr-8 snap-x">
-                    <a href="<?= base_url('detail/jujutsu-kaisen') ?>" class="relative flex-none w-[260px] md:w-[320px] snap-center group cursor-pointer block">
-                        <div class="aspect-video w-full rounded-sm overflow-hidden relative bg-surface-dark border border-white/5 group-hover:border-secondary/50 group-hover:shadow-neon-cyan transition-all duration-300">
-                            <img alt="Jujutsu Kaisen" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" src="https://us.oricon-group.com/upimg/sns/1000/1591/img1200/f8cd49221ee4f40281b0d8a033a89bb3.jpg"/>
-                            <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-[2px]">
-                                <span class="material-symbols-outlined text-secondary text-[48px] md:text-[60px] drop-shadow-[0_0_10px_rgba(0,240,255,1)]">play_circle</span>
-                            </div>
-                            <div class="absolute bottom-0 left-0 w-full h-1 md:h-1.5 bg-gray-900">
-                                <div class="h-full bg-gradient-to-r from-secondary to-primary w-[85%] shadow-[0_0_8px_rgba(0,240,255,0.8)]"></div>
-                            </div>
+                    
+                    <?php if (!empty($continue_watching)): ?>
+                        <?php foreach ($continue_watching as $watch): ?>
+                            <a href="<?= base_url('detail/' . esc($watch['slug'])) ?>" class="relative flex-none w-[260px] md:w-[320px] snap-center group cursor-pointer block">
+                                <div class="aspect-video w-full rounded-sm overflow-hidden relative bg-surface-dark border border-white/5 group-hover:border-secondary/50 group-hover:shadow-neon-cyan transition-all duration-300">
+                                    <img alt="<?= esc($watch['title']) ?>" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" src="<?= esc($watch['thumbnail_url']) ?>"/>
+                                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-[2px]">
+                                        <span class="material-symbols-outlined text-secondary text-[48px] md:text-[60px] drop-shadow-[0_0_10px_rgba(0,240,255,1)]">play_circle</span>
+                                    </div>
+                                    <div class="absolute bottom-0 left-0 w-full h-1 md:h-1.5 bg-gray-900">
+                                        <div class="h-full bg-gradient-to-r from-secondary to-primary w-[50%] shadow-[0_0_8px_rgba(0,240,255,0.8)]"></div>
+                                    </div>
+                                </div>
+                                <div class="mt-3 pl-1">
+                                    <h4 class="font-bold text-sm md:text-base leading-tight text-white truncate group-hover:text-secondary transition-colors uppercase"><?= esc($watch['title']) ?></h4>
+                                    <p class="text-xs md:text-sm text-text-secondary mt-1 font-medium flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-tertiary shadow-[0_0_5px_#ff0099]"></span>
+                                        Resume Watching
+                                    </p>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="w-full py-4 pl-2">
+                            <p class="text-text-secondary text-sm font-display">You haven't watched anything yet.</p>
                         </div>
-                        <div class="mt-3 pl-1">
-                            <h4 class="font-bold text-sm md:text-base leading-tight text-white truncate group-hover:text-secondary transition-colors uppercase">Jujutsu Kaisen</h4>
-                            <p class="text-xs md:text-sm text-text-secondary mt-1 font-medium flex items-center gap-1.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary shadow-[0_0_5px_#ff0099]"></span>
-                                S2 E14 • Thunderclap    
-                            </p>
-                        </div>
-                    </a>
-                    <div class="relative flex-none w-[260px] md:w-[320px] snap-center group cursor-pointer">
-                        <div class="aspect-video w-full rounded-sm overflow-hidden relative bg-surface-dark border border-white/5 group-hover:border-secondary/50 group-hover:shadow-neon-cyan transition-all duration-300">
-                            <img alt="Spy x Family" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" src="https://butwhytho.net/wp-content/uploads/2022/06/Spy-x-Family-Episode-9-But-Why-Tho.jpg"/>
-                            <div class="absolute bottom-0 left-0 w-full h-1 md:h-1.5 bg-gray-900">
-                                <div class="h-full bg-gradient-to-r from-secondary to-primary w-[30%] shadow-[0_0_8px_rgba(0,240,255,0.8)]"></div>
-                            </div>
-                        </div>
-                        <div class="mt-3 pl-1">
-                            <h4 class="font-bold text-sm md:text-base leading-tight text-white truncate group-hover:text-secondary transition-colors">SPY x FAMILY</h4>
-                            <p class="text-xs md:text-sm text-text-secondary mt-1 font-medium flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-tertiary shadow-[0_0_5px_#ff0099]"></span>
-                                S1 E9 • Show Off How in Love You Are
-                            </p>
-                        </div>
-                    </div>
+                    <?php endif; ?>
+
                 </div>
             </section>
 
             <section class="pl-5 md:pl-8">
                 <h3 class="text-lg md:text-xl font-bold text-white mb-5 flex items-center gap-3 pl-3 md:pl-4 leading-none h-6 md:h-7 border-l-2 md:border-l-4 border-primary shadow-[inset_2px_0_5px_rgba(176,38,255,0.5)]">
-                    Seasonal Hits
+                    New Arrivals
                 </h3>
                 <div class="flex overflow-x-auto gap-3 md:gap-5 no-scrollbar pb-2 pr-5 md:pr-8 snap-x">
-                    <div class="relative flex-none w-[130px] md:w-[180px] snap-start cursor-pointer group">
-                        <div class="aspect-[2/3] w-full rounded-sm overflow-hidden bg-surface-dark relative border border-white/5 group-hover:border-primary/50 group-hover:shadow-neon-purple transition-all duration-300">
-                            <img alt="Hell's Paradise" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://www.yourdecoration.com/cdn/shop/files/Poster-Hells-Paradise-Key-Art-Season-1-61x91-5cm-GBYDCO608.jpg?v=1767619915"/>
-                            <div class="absolute top-0 right-0 bg-secondary/90 backdrop-blur-sm text-black text-[10px] md:text-xs font-black px-2 py-0.5 md:py-1 rounded-bl-lg shadow-[0_0_8px_rgba(0,240,255,0.4)]">NEW</div>
+                    
+                    <?php if (!empty($seasonal)): ?>
+                        <?php foreach ($seasonal as $content): ?>
+                            <div class="relative flex-none w-[130px] md:w-[180px] snap-start cursor-pointer group">
+                                <a href="<?= base_url('detail/' . esc($content['slug'])) ?>" class="block">
+                                    <div class="aspect-[2/3] w-full rounded-sm overflow-hidden bg-surface-dark relative border border-white/5 group-hover:border-primary/50 group-hover:shadow-neon-purple transition-all duration-300">
+                                        <img alt="<?= esc($content['title']) ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="<?= esc($content['thumbnail_url']) ?>"/>
+                                        <div class="absolute top-0 right-0 bg-secondary/90 backdrop-blur-sm text-black text-[10px] md:text-xs font-black px-2 py-0.5 md:py-1 rounded-bl-lg shadow-[0_0_8px_rgba(0,240,255,0.4)]">NEW</div>
+                                    </div>
+                                    <p class="mt-2.5 text-xs md:text-sm font-bold text-white line-clamp-1 group-hover:text-primary transition-colors text-glow-purple">
+                                        <?= esc($content['title']) ?>
+                                    </p>
+                                    <p class="text-[10px] md:text-xs text-text-secondary mt-0.5">
+                                        <?= isset($content['rating']) ? esc($content['rating']) . ' ★' : 'N/A' ?> | <?= esc(ucfirst($content['type'])) ?>
+                                    </p>
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="w-full py-6">
+                            <p class="text-text-secondary text-sm font-display text-center">No new content available yet.</p>
                         </div>
-                        <p class="mt-2.5 text-xs md:text-sm font-bold text-white line-clamp-1 group-hover:text-primary transition-colors text-glow-purple">Hell's Paradise</p>
-                        <p class="text-[10px] md:text-xs text-text-secondary mt-0.5">Sub | Dub</p>
-                    </div>
-                    <div class="relative flex-none w-[130px] md:w-[180px] snap-start cursor-pointer group">
-                        <div class="aspect-[2/3] w-full rounded-sm overflow-hidden bg-surface-dark relative border border-white/5 group-hover:border-primary/50 group-hover:shadow-neon-purple transition-all duration-300">
-                            <img alt="Oshi No Ko" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://media.themoviedb.org/t/p/w500/okbW9NdKRNKgIUTVA8YZAUGwIUx.jpg"/>
-                        </div>
-                        <p class="mt-2.5 text-xs md:text-sm font-bold text-white line-clamp-1 group-hover:text-primary transition-colors">Oshi No Ko</p>
-                        <p class="text-[10px] md:text-xs text-text-secondary mt-0.5">Subtitles</p>
-                    </div>
-                    <div class="relative flex-none w-[130px] md:w-[180px] snap-start cursor-pointer group">
-                        <div class="aspect-[2/3] w-full rounded-sm overflow-hidden bg-surface-dark relative border border-white/5 group-hover:border-primary/50 group-hover:shadow-neon-purple transition-all duration-300">
-                            <img alt="Dr. STONE" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzJ3UfaoLbba3HiHeZj_MaesjdyhdpRbe_yA&s "/>
-                            <div class="absolute top-0 right-0 bg-tertiary/90 backdrop-blur-sm text-white text-[10px] md:text-xs font-black px-2 py-0.5 md:py-1 rounded-bl-lg shadow-[0_0_8px_rgba(255,0,153,0.4)]">HOT</div>
-                        </div>
-                        <p class="mt-2.5 text-xs md:text-sm font-bold text-white line-clamp-1 group-hover:text-primary transition-colors text-glow-purple">Dr. STONE New World</p>
-                        <p class="text-[10px] md:text-xs text-text-secondary mt-0.5">Sub | Dub</p>
-                    </div>
-                    <div class="relative flex-none w-[130px] md:w-[180px] snap-start cursor-pointer group">
-                        <div class="aspect-[2/3] w-full rounded-sm overflow-hidden bg-surface-dark relative border border-white/5 group-hover:border-primary/50 group-hover:shadow-neon-purple transition-all duration-300">
-                            <img alt="Demon Slayer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://img.wattpad.com/cover/325006493-256-k526884.jpg"/>
-                        </div>
-                        <p class="mt-2.5 text-xs md:text-sm font-bold text-white line-clamp-1 group-hover:text-primary transition-colors">Demon Slayer</p>
-                        <p class="text-[10px] md:text-xs text-text-secondary mt-0.5">Swordsmith Village Arc</p>
-                    </div>
+                    <?php endif; ?>
+
                 </div>
             </section>
-
+            
             <section class="pl-5 md:pl-8">
                 <div class="flex items-center gap-2 mb-5">
                     <h3 class="text-lg md:text-xl font-bold text-white border-l-2 md:border-l-4 border-tertiary pl-3 md:pl-4 leading-none h-6 md:h-7 shadow-[inset_2px_0_5px_rgba(255,0,153,0.5)]">

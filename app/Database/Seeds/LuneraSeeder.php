@@ -62,9 +62,9 @@ class LuneraSeeder extends Seeder
                 'slug'          => 'jujutsu-kaisen',
                 'description'   => 'A boy swallows a cursed talisman - the finger of a demon - and becomes cursed himself.',
                 // Official Poster JJK
-                'thumbnail_url' => 'https://image.tmdb.org/t/p/original/hD8yERO8eDFvIql1vrnz083xbjc.jpg',
+                'thumbnail_url' => 'https://i.pinimg.com/736x/ac/43/52/ac4352f877cd4265d69538bd7532b7b3.jpg',
                 // Official Wide Wallpaper
-                'cover_url'     => 'https://image.tmdb.org/t/p/original/fXkIifg2FHK40b2V95JgQn4gD.jpg',
+                'cover_url'     => 'https://i.pinimg.com/736x/ac/43/52/ac4352f877cd4265d69538bd7532b7b3.jpg',
                 'video_url'     => 'https://www.w3schools.com/html/mov_bbb.mp4',
                 'release_year'  => '2020',
                 'studio'        => 'MAPPA',
@@ -79,9 +79,9 @@ class LuneraSeeder extends Seeder
                 'slug'          => 'oshi-no-ko',
                 'description'   => 'A doctor and his patient are reborn as the twin children of their favorite musical idol.',
                 // Official Poster Oshi no Ko
-                'thumbnail_url' => 'https://image.tmdb.org/t/p/original/r165CMt27C9F209b53q9lY08Xh.jpg',
+                'thumbnail_url' => 'https://media.themoviedb.org/t/p/w500/okbW9NdKRNKgIUTVA8YZAUGwIUx.jpg',
                 // Official Wide Wallpaper
-                'cover_url'     => 'https://image.tmdb.org/t/p/original/4HodYYKEIsGOdinkGi2Ucz6X9i0.jpg',
+                'cover_url'     => 'https://media.themoviedb.org/t/p/w500/okbW9NdKRNKgIUTVA8YZAUGwIUx.jpg',
                 'video_url'     => 'https://www.w3schools.com/html/mov_bbb.mp4',
                 'release_year'  => '2023',
                 'studio'        => 'Doga Kobo',

@@ -166,41 +166,27 @@
             
             <div class="flex overflow-x-auto gap-4 md:gap-6 no-scrollbar pb-4 snap-x">
                 
-                <div class="relative flex-none w-[140px] md:w-[180px] snap-start group cursor-pointer">
-                    <div class="aspect-[2/3] w-full rounded-sm overflow-hidden relative border border-secondary/40 group-hover:border-secondary group-hover:shadow-neon-cyan transition-all duration-300">
-                        <img alt="Black Clover" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/aa/Black_Clover_key_visual.jpg/250px-Black_Clover_key_visual.jpg"/>
-                        <div class="absolute bottom-0 left-0 w-full h-1 md:h-1.5 bg-gray-900">
-                            <div class="h-full bg-secondary w-[45%] shadow-[0_0_5px_#00f0ff]"></div>
+                <?php if (!empty($history)): ?>
+                    <?php foreach ($history as $h): ?>
+                        <div class="relative flex-none w-[140px] md:w-[180px] snap-start group cursor-pointer">
+                            <a href="<?= base_url('detail/' . esc($h['slug'])) ?>">
+                                <div class="aspect-[2/3] w-full rounded-sm overflow-hidden relative border border-secondary/40 group-hover:border-secondary group-hover:shadow-neon-cyan transition-all duration-300">
+                                    <img alt="<?= esc($h['title']) ?>" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="<?= esc($h['thumbnail_url']) ?>"/>
+                                    <div class="absolute bottom-0 left-0 w-full h-1 md:h-1.5 bg-gray-900">
+                                        <div class="h-full bg-secondary w-[50%] shadow-[0_0_5px_#00f0ff]"></div>
+                                    </div>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-6 md:pb-8">
+                                        <span class="material-symbols-outlined text-white text-3xl drop-shadow-[0_0_5px_rgba(0,240,255,1)]">play_arrow</span>
+                                    </div>
+                                </div>
+                                <p class="mt-2 text-xs md:text-sm font-bold text-white truncate font-cyber"><?= esc($h['title']) ?></p>
+                                <p class="text-[10px] md:text-xs text-secondary"><?= esc(ucfirst($h['type'])) ?></p>
+                            </a>
                         </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-6 md:pb-8">
-                            <span class="material-symbols-outlined text-white text-3xl drop-shadow-[0_0_5px_rgba(0,240,255,1)]">play_arrow</span>
-                        </div>
-                    </div>
-                    <p class="mt-2 text-xs md:text-sm font-bold text-white truncate font-cyber">Black Clover</p>
-                    <p class="text-[10px] md:text-xs text-secondary">E154 • 12m left</p>
-                </div>
-                
-                <div class="relative flex-none w-[140px] md:w-[180px] snap-start group cursor-pointer">
-                    <div class="aspect-[2/3] w-full rounded-sm overflow-hidden relative border border-primary/40 group-hover:border-primary group-hover:shadow-neon-purple transition-all duration-300">
-                        <img alt="Cyberpunk" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://upload.wikimedia.org/wikipedia/id/a/a1/Cyberpunk_Edgerunners_poster.jpg"/>
-                        <div class="absolute bottom-0 left-0 w-full h-1 md:h-1.5 bg-gray-900">
-                            <div class="h-full bg-primary w-[90%] shadow-[0_0_5px_#b026ff]"></div>
-                        </div>
-                    </div>
-                    <p class="mt-2 text-xs md:text-sm font-bold text-white truncate font-cyber">Cyberpunk</p>
-                    <p class="text-[10px] md:text-xs text-primary">E10 • Finished</p>
-                </div>
-                
-                <div class="relative flex-none w-[140px] md:w-[180px] snap-start group cursor-pointer">
-                    <div class="aspect-[2/3] w-full rounded-sm overflow-hidden relative border border-tertiary/40 group-hover:border-tertiary group-hover:shadow-neon-magenta transition-all duration-300">
-                        <img alt="Jujutsu Kaisen" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://awsimages.detik.net.id/community/media/visual/2024/02/08/jujutsu-kaisen.jpeg?w=1200"/>
-                        <div class="absolute bottom-0 left-0 w-full h-1 md:h-1.5 bg-gray-900">
-                            <div class="h-full bg-tertiary w-[10%] shadow-[0_0_5px_#ff0099]"></div>
-                        </div>
-                    </div>
-                    <p class="mt-2 text-xs md:text-sm font-bold text-white truncate font-cyber">Jujutsu Kaisen</p>
-                    <p class="text-[10px] md:text-xs text-tertiary">S2 E1 • Just Started</p>
-                </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p class="text-text-secondary text-sm font-display pl-2">No history available.</p>
+                <?php endif; ?>
                 
             </div>
         </section>
@@ -214,24 +200,27 @@
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
-                <div class="relative group cursor-pointer overflow-hidden rounded-sm border border-white/5 hover:border-tertiary/50 transition-all">
-                    <div class="aspect-video bg-surface-dark relative">
-                        <img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105" src="https://image.tmdb.org/t/p/w500/yF1eOkaYvwiORauRCPWznV9xVvi.jpg"/>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
-                        <div class="absolute bottom-2 left-3 md:bottom-3 md:left-4">
-                            <span class="text-xs md:text-sm font-bold text-white font-cyber">Your Name</span>
+                
+                <?php if (!empty($favorites)): ?>
+                    <?php foreach ($favorites as $fav): ?>
+                        <div class="relative group cursor-pointer overflow-hidden rounded-sm border border-white/5 hover:border-tertiary/50 transition-all">
+                            <a href="<?= base_url('detail/' . esc($fav['slug'])) ?>">
+                                <div class="aspect-video bg-surface-dark relative">
+                                    <img alt="<?= esc($fav['title']) ?>" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105" src="<?= esc($fav['thumbnail_url']) ?>"/>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                                    <div class="absolute bottom-2 left-3 md:bottom-3 md:left-4">
+                                        <span class="text-xs md:text-sm font-bold text-white font-cyber"><?= esc($fav['title']) ?></span>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="col-span-full py-4">
+                        <p class="text-text-secondary text-sm font-display">No favorites added yet.</p>
                     </div>
-                </div>
-                <div class="relative group cursor-pointer overflow-hidden rounded-sm border border-white/5 hover:border-tertiary/50 transition-all">
-                    <div class="aspect-video bg-surface-dark relative">
-                        <img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105" src="https://image.tmdb.org/t/p/w500/4HodYYKEIsGOdinkGi2Ucz6X9i0.jpg"/>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
-                        <div class="absolute bottom-2 left-3 md:bottom-3 md:left-4">
-                            <span class="text-xs md:text-sm font-bold text-white font-cyber">Oshi no Ko</span>
-                        </div>
-                    </div>
-                </div>
+                <?php endif; ?>
+
             </div>
         </section>
         

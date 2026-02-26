@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\ContentModel;
 use App\Models\CategoryModel;
 use App\Models\EpisodeModel;
-use App\Models\UserModel; // Tambahkan Model User
+use App\Models\UserModel;
 
 class Lunera extends BaseController
 {
@@ -24,10 +24,33 @@ class Lunera extends BaseController
 
     public function index()
     {
+        $userId = session()->get('id_user');
+        $db = \Config\Database::connect();
+        
+        $continue_watching = [];
+
+        // Jika user login, ambil data personalisasinya
+        if ($userId) {
+            $userProfile = $this->userModel->join('profiles', 'profiles.id_user = users.id_user')
+                                        ->where('users.id_user', $userId)
+                                        ->first();
+            
+            if ($userProfile) {
+                // Ambil data Continue Watching (dari watch_history)
+                $continue_watching = $db->table('watch_history')
+                                ->join('contents', 'contents.id_content = watch_history.id_content')
+                                ->where('watch_history.id_profile', $userProfile['id_profile'])
+                                ->orderBy('watched_at', 'DESC')
+                                ->limit(5) // Ambil 5 terakhir
+                                ->get()->getResultArray();
+            }
+        }
+
         $data = [
             'trending' => $this->contentModel->where('type', 'series')->orderBy('rating', 'DESC')->findAll(5),
             'movies'   => $this->contentModel->where('type', 'movie')->orderBy('rating', 'DESC')->findAll(6),
-            'seasonal' => $this->contentModel->orderBy('created_at', 'DESC')->findAll(10)
+            'seasonal' => $this->contentModel->orderBy('created_at', 'DESC')->findAll(10),
+            'continue_watching' => $continue_watching
         ];
         return view('home', $data);
     }
@@ -49,7 +72,6 @@ class Lunera extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Anime not found.");
         }
 
-        // Ambil episode
         $episodes = $this->episodeModel->where('id_content', $anime['id_content'])->orderBy('episode_no', 'ASC')->findAll();
 
         $data = [
@@ -63,32 +85,47 @@ class Lunera extends BaseController
         return view('detail', $data);
     }
 
-    public function watch($episode_id = null)
+    public function watch($id = null)
     {
-        // 1. Cari data episode berdasarkan ID
-        $episode = $this->episodeModel->find($episode_id);
-        
-        if (!$episode) {
-            return redirect()->to('/');
-        }
+        $isMovie = $this->request->getGet('is_movie');
 
-        // 2. Cari data Anime induknya berdasarkan id_content dari episode
-        $anime = $this->contentModel->find($episode['id_content']);
+        if ($isMovie) {
+            $anime = $this->contentModel->find($id);
+            
+            if (!$anime || strtolower($anime['type']) != 'movie') {
+                return redirect()->to('/');
+            }
+            
+            $episode = [
+                'id_episode' => $anime['id_content'],
+                'id_content' => $anime['id_content'],
+                'title'      => 'Full Movie',
+                'episode_no' => 1,
+                'video_url'  => $anime['video_url'],
+                'duration'   => isset($anime['duration']) ? $anime['duration'] : '120'
+            ];
+            
+        } else {
+            $episode = $this->episodeModel->find($id);
+            
+            if (!$episode) {
+                return redirect()->to('/');
+            }
+            $anime = $this->contentModel->find($episode['id_content']);
+        }
 
         $data = [
             'episode' => $episode,
-            'anime'   => $anime // Kirim data anime ke view
+            'anime'   => $anime
         ];
         
         return view('watch', $data);
     }
 
-    
     public function myList()
     {
         $userId = session()->get('id_user');
         
-        // Get profile ID linked to user
         $userProfile = $this->userModel->join('profiles', 'profiles.id_user = users.id_user')
                                     ->where('users.id_user', $userId)
                                     ->first();
@@ -98,7 +135,6 @@ class Lunera extends BaseController
         $idProfile = $userProfile['id_profile'];
         $db = \Config\Database::connect();
 
-        // The Query: Join favorites with contents to get titles and images
         $favorites = $db->table('favorites')
                         ->select('contents.*, favorites.added_at')
                         ->join('contents', 'contents.id_content = favorites.id_content')
@@ -109,26 +145,28 @@ class Lunera extends BaseController
 
         return view('mylist', ['favorites' => $favorites]);
     }
-    
 
     public function profile()
     {
-        // Ambil ID dari session login
         $userId = session()->get('id_user');
+        $db = \Config\Database::connect();
         
-        // Ambil data user & profile dari database
-        // Kita join tabel users dan profiles
         $data['user'] = $this->userModel->join('profiles', 'profiles.id_user = users.id_user')
                                         ->where('users.id_user', $userId)
                                         ->first();
 
-        // Ambil history tontonan (Join WatchHistory -> Content)
-        $db = \Config\Database::connect();
         $data['history'] = $db->table('watch_history')
                               ->join('contents', 'contents.id_content = watch_history.id_content')
                               ->where('watch_history.id_profile', $data['user']['id_profile'])
                               ->orderBy('watched_at', 'DESC')
+                              ->limit(5)
                               ->get()->getResultArray();
+
+        $data['favorites'] = $db->table('favorites')
+                                ->join('contents', 'contents.id_content = favorites.id_content')
+                                ->where('favorites.id_profile', $data['user']['id_profile'])
+                                ->orderBy('added_at', 'DESC')
+                                ->get()->getResultArray();
 
         return view('profile', $data);
     }
@@ -144,9 +182,36 @@ class Lunera extends BaseController
 
     public function updateProfile()
     {
-        // Logic simpan data edit profile
-        // Untuk sementara redirect dulu karena view editprofile kamu belum punya tag <form>
-        return redirect()->to('/profile')->with('success', 'Profile updated!');
+        $userId = session()->get('id_user');
+        $db = \Config\Database::connect();
+
+        $profileName = $this->request->getPost('profile_name');
+        $username    = $this->request->getPost('username');
+        
+        $avatarFile = $this->request->getFile('avatar');
+        $avatarPath = null;
+
+        if ($avatarFile && $avatarFile->isValid() && !$avatarFile->hasMoved()) {
+            $newName = $avatarFile->getRandomName();
+            $avatarFile->move(FCPATH . 'uploads/avatars', $newName);
+            $avatarPath = base_url('uploads/avatars/' . $newName);
+        } else {
+            $avatarPath = $this->request->getPost('avatar_url');
+        }
+
+        if ($username) {
+            $db->table('users')->where('id_user', $userId)->update(['username' => $username]);
+        }
+
+        $profileData = [];
+        if ($profileName) $profileData['profile_name'] = $profileName;
+        if ($avatarPath)  $profileData['avatar']       = $avatarPath;
+
+        if (!empty($profileData)) {
+            $db->table('profiles')->where('id_user', $userId)->update($profileData);
+        }
+
+        return redirect()->to('profile')->with('success', 'PROFILE_SYNC: Your data has been updated.');
     }
 
     public function settings()
@@ -154,7 +219,6 @@ class Lunera extends BaseController
         return view('setting');
     }
 
-    // RESTORED: Toggle Favorite Logic
     public function toggleFavorite($id_content)
     {
         $userId = session()->get('id_user');
@@ -163,7 +227,6 @@ class Lunera extends BaseController
         }
 
         $db = \Config\Database::connect();
-        // Get profile ID (Fixes the Null error from your screenshot)
         $userProfile = $this->userModel->join('profiles', 'profiles.id_user = users.id_user')
                                     ->where('users.id_user', $userId)
                                     ->first();

@@ -35,13 +35,16 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
     $routes->get('add-episode', 'Admin::addEpisode');     // View: addepisode
     $routes->post('save-episode', 'Admin::saveEpisode');  // Action: Process save new episode
     
-    // --- MANAGE CONTENT (BARU) ---
+    // --- MANAGE CONTENT  ---
     $routes->get('add-content', 'Admin::addContent');     // View: addcontent
     $routes->post('save-content', 'Admin::saveContent');  // Action: Process save new content
     
-    // --- MANAGE USERS (BARU) ---
+    // --- MANAGE USERS  ---
     $routes->get('users', 'Admin::users');                // View: Manage Users list
     $routes->post('users/add', 'Admin::addUser');         // Action: Process add new user dari Modal
+
+    $routes->post('users/update/(:num)', 'Admin::updateUser/$1');
+    $routes->post('users/delete/(:num)', 'Admin::deleteUser/$1');
 });
 
 // 4. ROUTES API

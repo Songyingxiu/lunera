@@ -87,7 +87,8 @@
                     <h1 class="text-xl font-black italic tracking-tighter text-white font-cyber logo-text">LUNERA</h1>
                 </div>
             </div>
-            <div class="w-10"></div> </div>
+            <div class="w-10"></div> 
+        </div>
     </header>
 
     <main class="relative z-10 w-full max-w-2xl mx-auto pt-28 pb-16 px-5 space-y-10">
@@ -105,7 +106,7 @@
                     <label for="avatar_upload" class="absolute bottom-2 right-2 md:bottom-4 md:right-4 bg-secondary text-background-dark p-2.5 rounded-full shadow-neon-cyan flex items-center justify-center border-2 border-background-dark hover:scale-110 hover:bg-white transition-transform cursor-pointer z-10">
                         <span class="material-symbols-outlined text-lg">photo_camera</span>
                     </label>
-                    <input type="file" id="avatar_upload" name="avatar_file" accept="image/*" class="hidden">
+                    <input type="file" id="avatar_upload" name="avatar" accept="image/*" class="hidden">
                 </div>
                 
                 <div class="text-center bg-surface-dark/50 border border-white/5 px-6 py-2 rounded-sm backdrop-blur-sm">

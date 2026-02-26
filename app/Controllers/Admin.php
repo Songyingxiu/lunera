@@ -187,4 +187,63 @@ class Admin extends BaseController
         // Jika sukses
         return redirect()->to('admin/users')->with('success', 'USER CREATED: ' . $userData['username'] . ' successfully added to the network.');
     }
+
+    // ==========================================
+    // UPDATE USER (DARI MODAL EDIT)
+    // ==========================================
+    public function updateUser($id_user)
+    {
+        $db = \Config\Database::connect();
+        $db->transStart();
+
+        // 1. Update tabel Users
+        $userData = [
+            'username' => $this->request->getPost('username'),
+            'email'    => $this->request->getPost('email'),
+            'role'     => $this->request->getPost('role')
+        ];
+
+        // Jika password diisi, berarti admin ingin mengganti password user tsb
+        $password = $this->request->getPost('password');
+        if (!empty($password)) {
+            $userData['password'] = password_hash($password, PASSWORD_DEFAULT);
+        }
+        
+        $db->table('users')->where('id_user', $id_user)->update($userData);
+
+        // 2. Update tabel Profiles
+        $profileData = [
+            'profile_name' => $this->request->getPost('profile_name'),
+            'avatar'       => $this->request->getPost('avatar') // Asumsi admin pakai input URL
+        ];
+        
+        $db->table('profiles')->where('id_user', $id_user)->update($profileData);
+
+        $db->transComplete();
+
+        if ($db->transStatus() === FALSE) {
+            return redirect()->to('admin/users')->with('error', 'SYSTEM ERROR: Failed to update user data.');
+        }
+
+        return redirect()->to('admin/users')->with('success', 'USER UPDATED: ' . $userData['username'] . ' modified.');
+    }
+
+    // ==========================================
+    // DELETE USER
+    // ==========================================
+    public function deleteUser($id_user)
+    {
+        $db = \Config\Database::connect();
+        
+        // Hapus dari tabel users (Jika di database kamu sudah pakai CASCADE, 
+        // data di tabel profiles, favorites, dll akan otomatis terhapus)
+        $delete = $db->table('users')->where('id_user', $id_user)->delete();
+
+        if ($delete) {
+            return redirect()->to('admin/users')->with('success', 'USER PURGED: User data has been permanently deleted.');
+        } else {
+            return redirect()->to('admin/users')->with('error', 'SYSTEM ERROR: Failed to delete user.');
+        }
+    }
+
 }
