@@ -16,7 +16,7 @@ class Admin extends BaseController
     {
         $this->contentModel = new ContentModel();
         $this->episodeModel = new EpisodeModel();
-        $this->userModel = new UserModel();
+        $this->userModel    = new UserModel();
     }
 
     public function index()
@@ -29,6 +29,9 @@ class Admin extends BaseController
         return view('adminhome', $data);
     }
 
+    // ==========================================
+    // MANAGE EPISODES
+    // ==========================================
     public function addEpisode()
     {
         return view('addepisode');
@@ -36,7 +39,7 @@ class Admin extends BaseController
 
     public function saveEpisode()
     {
-        // RESTORED: Security Validation Protocols
+        // Security Validation Protocols
         $rules = [
             'content_id'    => 'required|is_natural_no_zero',
             'episode_no'    => 'required|is_natural_no_zero',
@@ -47,11 +50,9 @@ class Admin extends BaseController
         ];
 
         if (!$this->validate($rules)) {
-            // If validation fails, we go back with the errors and the user's typed data
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        // Ambil data dari form addepisode.php
         $data = [
             'id_content'    => $this->request->getPost('content_id'),
             'episode_no'    => $this->request->getPost('episode_no'),
@@ -64,7 +65,126 @@ class Admin extends BaseController
 
         $this->episodeModel->insert($data);
 
-        // RESTORED: Cyberpunk Success Message
         return redirect()->to('/admin')->with('success', 'SYSTEM_SYNC: Episode data successfully deployed to the network.');
+    }
+
+    // ==========================================
+    // MANAGE CONTENTS
+    // ==========================================
+    public function addContent()
+    {
+        return view('addcontent');
+    }
+
+    public function saveContent()
+    {
+        // Security Validation Protocols untuk Content
+        $rules = [
+            'id_category'   => 'required',
+            'rating'        => 'required|numeric',
+            'title'         => 'required|min_length[2]',
+            'slug'          => 'required',
+            'description'   => 'required',
+            'thumbnail_url' => 'required|valid_url',
+            'cover_url'     => 'required|valid_url',
+            'video_url'     => 'required|valid_url',
+            'release_year'  => 'required|numeric',
+            'studio'        => 'required',
+            'type'          => 'required',
+            'status'        => 'required'
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $data = [
+            'id_category'   => $this->request->getPost('id_category'),
+            'rating'        => $this->request->getPost('rating'),
+            'title'         => $this->request->getPost('title'),
+            'slug'          => strtolower(trim($this->request->getPost('slug'))), // memastikan slug kecil semua
+            'description'   => $this->request->getPost('description'),
+            'thumbnail_url' => $this->request->getPost('thumbnail_url'),
+            'cover_url'     => $this->request->getPost('cover_url'),
+            'video_url'     => $this->request->getPost('video_url'),
+            'release_year'  => $this->request->getPost('release_year'),
+            'studio'        => $this->request->getPost('studio'),
+            'type'          => $this->request->getPost('type'),
+            'status'        => $this->request->getPost('status'),
+            'created_at'    => date('Y-m-d H:i:s')
+        ];
+
+        $this->contentModel->insert($data);
+
+        return redirect()->to('/admin')->with('success', 'SYSTEM_SYNC: Content catalog successfully deployed to the network.');
+    }
+
+    // ==========================================
+    // MANAGE USERS
+    // ==========================================
+    public function users()
+    {
+        $db = \Config\Database::connect();
+        
+        // Mengambil data user beserta avatarnya (JOIN)
+        $usersList = $db->table('users')
+                        ->select('users.*, profiles.profile_name, profiles.avatar')
+                        ->join('profiles', 'profiles.id_user = users.id_user', 'left')
+                        ->orderBy('users.created_at', 'DESC')
+                        ->get()
+                        ->getResultArray();
+
+        $data = [
+            'title' => 'Lunera Admin - Manage Users',
+            'users' => $usersList
+        ];
+
+        return view('user', $data);
+    }
+
+    public function addUser()
+    {
+        $db = \Config\Database::connect();
+
+        // Menggunakan Database Transaction (Mengamankan insert ke 2 tabel sekaligus)
+        $db->transStart();
+
+        // 1. Data untuk tabel Users
+        $userData = [
+            'username'   => $this->request->getPost('username'),
+            'email'      => $this->request->getPost('email'),
+            'password'   => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+            'role'       => $this->request->getPost('role'),
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+        
+        $db->table('users')->insert($userData);
+        $newUserId = $db->insertID(); // Ambil ID yang baru saja dibuat
+
+        // 2. Data untuk tabel Profiles
+        // Ambil input avatar, jika kosong, gunakan gambar default
+        $avatarInput = $this->request->getPost('avatar');
+        $avatarUrl = !empty($avatarInput) ? $avatarInput : 'https://lh3.googleusercontent.com/aida-public/AB6AXuC1nNhLmj8sleWRjQLrO70-_WTGuq5_i0hBPPt4og-BiRkeezsDz2sT2sA4sPq-u58rsEhXsB4-oNpKYnHMarjAphjUkALAfiu2IL9erofsUxKtQRRUHlp5GQ3B_-BgfOLlB_rogL9ZZic0r0maDDziPBkP9dyZ0oqI99Yb2DgFbercVCIETKTqT1XZVdLkEXrgqPy548Kcv0Zc1tNelTOicdEmZLXITD7ZVSBIw0135zY6tTbEGkvNi_4nq6gLxFEVMt2Nq0AnGL4n';
+
+        $profileData = [
+            'id_user'      => $newUserId,
+            // Simpan profile_name dari input form
+            'profile_name' => $this->request->getPost('profile_name'),
+            // Simpan url gambar dari input form
+            'avatar'       => $avatarUrl 
+        ];
+        
+        $db->table('profiles')->insert($profileData);
+
+        // Eksekusi Transaction
+        $db->transComplete();
+
+        if ($db->transStatus() === FALSE) {
+            // Jika gagal
+            return redirect()->to('admin/users')->with('error', 'SYSTEM ERROR: Failed to register user.');
+        }
+
+        // Jika sukses
+        return redirect()->to('admin/users')->with('success', 'USER CREATED: ' . $userData['username'] . ' successfully added to the network.');
     }
 }

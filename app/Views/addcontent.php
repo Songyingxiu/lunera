@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Lunera Add Content</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#b026ff", 
+                        "secondary": "#00f0ff", 
+                        "tertiary": "#ff0099", 
+                        "background-light": "#1a1a2e",
+                        "background-dark": "#050508", 
+                        "surface-dark": "#121216",
+                        "surface-purple": "#1a0b2e",
+                        "text-secondary": "#9ca3af",
+                        "accent-dark": "#1a1a2e",
+                        "danger": "#ff003c"
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"],
+                        "cyber": ["Orbitron", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'neon-purple': '0 0 10px rgba(176, 38, 255, 0.5), 0 0 20px rgba(176, 38, 255, 0.3)',
+                        'neon-cyan': '0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3)',
+                        'neon-magenta': '0 0 15px rgba(255, 0, 153, 0.6), 0 0 30px rgba(255, 0, 153, 0.4)',
+                        'neon-magenta-sm': '0 0 5px rgba(255, 0, 153, 0.5), 0 0 10px rgba(255, 0, 153, 0.3)',
+                        'input-glow': '0 0 5px rgba(0, 240, 255, 0.2), inset 0 0 5px rgba(0, 240, 255, 0.1)',
+                        'neon-error': '0 0 5px rgba(255, 0, 60, 0.5), inset 0 0 5px rgba(255, 0, 60, 0.1)'
+                    },
+                    backgroundImage: {
+                        'cyber-grid': "linear-gradient(to right, #1a1a2e 1px, transparent 1px), linear-gradient(to bottom, #1a1a2e 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        .clip-path-slant { clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); }
+        .clip-path-corner { clip-path: polygon(0 0, 100% 0, 100% 100%, 20px 100%, 0 calc(100% - 20px)); }
+        .text-glow-purple { text-shadow: 0 0 10px rgba(176, 38, 255, 0.7); }
+        .text-glow-cyan { text-shadow: 0 0 12px rgba(0, 240, 255, 0.8); }
+        body { min-height: max(884px, 100dvh); }
+        
+        .shake-error { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        /* Default Styling for Inputs (Mirrored from addepisode) */
+        input:not([type="checkbox"]):not(.sr-only), textarea, select {
+            @apply w-full bg-surface-dark border-b border-white/20 text-white placeholder-gray-600 px-4 py-3 focus:outline-none focus:border-secondary focus:bg-surface-purple/30 transition-all font-display text-sm md:text-base rounded-t-sm;
+        }
+        
+        select {
+            @apply appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2300f0ff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1.25rem] bg-[right_0.5rem_center] bg-no-repeat pr-10;
+        }
+        select option {
+            @apply bg-background-dark text-white;
+        }
+    </style>
+</head>
+<body class="bg-background-dark font-display text-white overflow-x-hidden min-h-screen relative flex flex-col md:items-center">
+
+    <div class="fixed inset-0 bg-gradient-to-br from-[#0a0a1a] via-[#050508] to-[#120024] -z-20"></div>
+    <div class="fixed inset-0 bg-cyber-grid bg-[size:40px_40px] opacity-10 -z-10"></div>
+    <div class="fixed top-0 left-0 right-0 h-96 bg-gradient-to-b from-primary/10 to-transparent -z-10 blur-3xl"></div>
+
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background-dark/90 backdrop-blur-md border-b border-white/5 shadow-[0_5px_20px_rgba(0,0,0,0.5)]">
+        <div class="flex items-center justify-between px-4 py-4 pt-6 max-w-4xl mx-auto w-full">
+            <a href="<?= base_url('admin') ?>" class="flex items-center justify-center w-10 h-10 text-white rounded-full bg-surface-dark border border-white/10 hover:border-secondary/50 shadow-lg transition-all">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </a>
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary filled" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48; font-size: 24px; text-shadow: 0 0 12px rgba(0, 240, 255, 0.8);">bedtime</span>
+                <h1 class="text-lg font-black tracking-tight text-white uppercase italic text-glow-purple">LUNERA</h1>
+            </div>
+            <div class="w-10"></div>
+        </div>
+    </header>
+
+    <main class="relative z-10 w-full max-w-4xl mx-auto mt-24 mb-32 px-5 md:px-10">
+        
+        <div class="md:bg-[#050508]/80 md:backdrop-blur-md md:border md:border-white/10 md:p-8 md:shadow-[0_0_30px_rgba(0,0,0,0.8)] relative">
+            
+            <div class="hidden md:block absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-secondary/50"></div>
+            <div class="hidden md:block absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-tertiary/50"></div>
+
+            <section class="flex flex-col space-y-2 border-l-2 border-secondary pl-4 relative mb-8">
+                <div class="absolute -left-[3px] top-0 w-[4px] h-8 bg-secondary shadow-[0_0_10px_#00f0ff]"></div>
+                <h2 class="font-cyber text-2xl font-bold tracking-wider text-white uppercase">ADD NEW CONTENT</h2>
+                <p class="text-text-secondary text-xs uppercase tracking-[0.1em] font-medium">Catalog Modification Protocol v1.2</p>
+            </section>
+
+            <?php if(session()->getFlashdata('errors')): ?>
+                <div class="mb-6 bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-sm text-[10px] font-cyber tracking-widest uppercase shadow-[0_0_15px_rgba(255,0,0,0.2)]">
+                    <ul class="list-disc list-inside">
+                        <?php foreach (session()->getFlashdata('errors') as $error): ?>
+                            <li><?= $error ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+
+            <div id="validationAlert" class="hidden mb-6 bg-danger/10 border border-danger/50 text-danger px-4 py-3 rounded-sm text-[10px] font-cyber tracking-widest uppercase shadow-neon-error flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm">warning</span>
+                <span>SYSTEM HALTED: Missing required parameters.</span>
+            </div>
+
+            <form action="<?= base_url('admin/save-content') ?>" method="post" class="space-y-6 md:space-y-8" id="contentForm" novalidate>
+                <div class="space-y-5 md:space-y-7">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
+                        <div class="relative group input-group">
+                            <label class="flex justify-between block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">
+                                <span>ID_CATEGORY</span>
+                                <span class="error-msg text-danger hidden text-[9px]">*Req</span>
+                            </label>
+                            <input name="id_category" value="<?= old('id_category') ?>" class="req-input" placeholder="e.g., 1 or CAT-01" type="text" required/>
+                        </div>
+                        
+                        <div class="relative group input-group">
+                            <label class="flex justify-between block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">
+                                <span>RATING</span>
+                                <span class="error-msg text-danger hidden text-[9px]">*Req</span>
+                            </label>
+                            <input name="rating" value="<?= old('rating') ?>" class="req-input" placeholder="8.5" type="number" step="0.1" max="10" required/>
+                        </div>
+                    </div>
+
+                    <div class="relative group input-group">
+                        <label class="flex justify-between block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">
+                            <span>TITLE</span>
+                            <span class="error-msg text-danger hidden text-[9px]">*Required</span>
+                        </label>
+                        <input name="title" value="<?= old('title') ?>" class="req-input" placeholder="Anime or Movie Title" type="text" required/>
+                    </div>
+
+                    <div class="relative group input-group">
+                        <label class="flex justify-between block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">
+                            <span>SLUG</span>
+                            <span class="error-msg text-danger hidden text-[9px]">*Required</span>
+                        </label>
+                        <input name="slug" value="<?= old('slug') ?>" class="req-input" placeholder="anime-title-slug" type="text" required/>
+                    </div>
+
+                    <div class="relative group input-group">
+                        <label class="flex justify-between block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">
+                            <span>DESCRIPTION</span>
+                            <span class="error-msg text-danger hidden text-[9px]">*Required</span>
+                        </label>
+                        <textarea name="description" class="req-input resize-none" placeholder="Enter full content description..." rows="4" required><?= old('description') ?></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
+                        <div class="relative group input-group">
+                            <label class="flex justify-between block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">
+                                <span>THUMBNAIL_URL</span>
+                                <span class="error-msg text-danger hidden text-[9px]">*Req</span>
+                            </label>
+                            <input name="thumbnail_url" value="<?= old('thumbnail_url') ?>" class="req-input" placeholder="https://..." type="url" required/>
+                        </div>
+                        
+                        <div class="relative group input-group">
+                            <label class="flex justify-between block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">
+                                <span>COVER_URL</span>
+                                <span class="error-msg text-danger hidden text-[9px]">*Req</span>
+                            </label>
+                            <input name="cover_url" value="<?= old('cover_url') ?>" class="req-input" placeholder="https://..." type="url" required/>
+                        </div>
+                    </div>
+
+                    <div class="relative group input-group">
+                        <label class="flex justify-between block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">
+                            <span>VIDEO_URL (TRAILER)</span>
+                            <span class="error-msg text-danger hidden text-[9px]">*Required</span>
+                        </label>
+                        <input name="video_url" value="<?= old('video_url') ?>" class="req-input" placeholder="https://stream.lunera.tv/v/..." type="url" required/>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
+                        <div class="relative group input-group">
+                            <label class="flex justify-between block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">
+                                <span>RELEASE_YEAR</span>
+                                <span class="error-msg text-danger hidden text-[9px]">*Req</span>
+                            </label>
+                            <input name="release_year" value="<?= old('release_year') ?>" class="req-input" placeholder="2024" type="number" required/>
+                        </div>
+                        
+                        <div class="relative group input-group">
+                            <label class="flex justify-between block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">
+                                <span>STUDIO</span>
+                                <span class="error-msg text-danger hidden text-[9px]">*Req</span>
+                            </label>
+                            <input name="studio" value="<?= old('studio') ?>" class="req-input" placeholder="Studio Name" type="text" required/>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
+                        <div class="relative group input-group">
+                            <label class="block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">TYPE</label>
+                            <select name="type" required>
+                                <option value="TV">TV SERIES</option>
+                                <option value="MOVIE">MOVIE</option>
+                                <option value="OVA">OVA</option>
+                            </select>
+                        </div>
+                        
+                        <div class="relative group input-group">
+                            <label class="block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">STATUS</label>
+                            <select name="status" required>
+                                <option value="ONGOING">ONGOING</option>
+                                <option value="COMPLETED" selected>COMPLETED</option>
+                                <option value="UPCOMING">UPCOMING</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div> 
+    </main>
+
+    <div class="fixed bottom-0 left-0 right-0 p-5 bg-[#050508]/95 backdrop-blur-xl border-t border-white/10 z-50">
+        <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+        
+        <div class="max-w-4xl mx-auto flex gap-4 w-full">
+            <a href="<?= base_url('admin') ?>" class="flex-1 py-3.5 md:py-4 bg-surface-dark border border-secondary/50 text-secondary hover:bg-secondary/10 transition-all font-cyber text-sm md:text-base text-center tracking-wider clip-path-corner uppercase flex items-center justify-center">
+                Cancel
+            </a>
+            <button type="submit" form="contentForm" class="flex-[2] py-3.5 md:py-4 bg-tertiary hover:bg-[#ff1aa3] text-white shadow-neon-magenta hover:shadow-[0_0_20px_rgba(255,0,153,0.6)] transition-all font-cyber text-sm md:text-base font-bold tracking-wider clip-path-corner uppercase flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-lg md:text-xl">save</span>
+                Save Changes
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('contentForm').addEventListener('submit', function(event) {
+            let isValid = true;
+            const inputs = document.querySelectorAll('.req-input');
+            const alertBox = document.getElementById('validationAlert');
+            
+            alertBox.classList.add('hidden');
+
+            inputs.forEach(input => {
+                const group = input.closest('.input-group');
+                const errorMsg = group.querySelector('.error-msg');
+
+                // Reset desain error
+                input.classList.remove('border-danger', 'bg-danger/10');
+                input.classList.add('border-white/20');
+                if(errorMsg) errorMsg.classList.add('hidden');
+
+                // Cek jika kosong
+                if (input.value.trim() === '') {
+                    isValid = false;
+                    
+                    // Set warna merah
+                    input.classList.remove('border-white/20');
+                    input.classList.add('border-danger', 'bg-danger/10');
+                    if(errorMsg) errorMsg.classList.remove('hidden');
+                }
+            });
+
+            if (!isValid) {
+                event.preventDefault();
+                alertBox.classList.remove('hidden', 'shake-error');
+                void alertBox.offsetWidth; // Trigger reflow untuk reset animasi
+                alertBox.classList.add('shake-error');
+            }
+        });
+
+        // Reset warna merah saat user mulai mengetik
+        document.querySelectorAll('.req-input').forEach(input => {
+            input.addEventListener('input', function() {
+                const group = input.closest('.input-group');
+                const errorMsg = group.querySelector('.error-msg');
+
+                input.classList.remove('border-danger', 'bg-danger/10');
+                input.classList.add('border-white/20');
+                if(errorMsg) errorMsg.classList.add('hidden');
+                
+                document.getElementById('validationAlert').classList.add('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
         $profileData = [
             'id_user'      => $userId,
             'profile_name' => 'JotaroKujo',
-            'avatar'       => 'https://lh3.googleusercontent.com/aida-public/AB6AXuC1nNhLmj8sleWRjQLrO70-_WTGuq5_i0hBPPt4og-BiRkeezsDz2sT2sA4sPq-u58rsEhXsB4-oNpKYnHMarjAphjUkALAfiu2IL9erofsUxKtQRRUHlp5GQ3B_-BgfOLlB_rogL9ZZic0r0maDDziPBkP9dyZ0oqI99Yb2DgFbercVCIETKTqT1XZVdLkEXrgqPy548Kcv0Zc1tNelTOicdEmZLXITD7ZVSBIw0135zY6tTbEGkvNi_4nq6gLxFEVMt2Nq0AnGL4n', // Matching your profile.php view
+            'avatar'       => 'https://i.pinimg.com/736x/2a/06/6d/2a066deed607b18b83526c5b0ff5b0fb.jpg', // Matching your profile.php view
         ];
 
         $this->db->table('profiles')->insert($profileData);
@@ -78,7 +78,7 @@ class UserSeeder extends Seeder
         $profileSelen = [
             'id_user'      => $idSelen,
             'profile_name' => 'Selen',
-            'avatar'       => 'https://static.wikia.nocookie.net/character-stats-and-profiles/images/4/4c/Selen_tatsuki.png/revision/latest?cb=20240223152506',
+            'avatar'       => 'https://i.pinimg.com/236x/da/af/fa/daaffab1068ea8ca251c1e8be3f92470.jpg',
         ];
         $this->db->table('profiles')->insert($profileSelen);
         $idProfileSelen = $this->db->insertID();
@@ -138,7 +138,7 @@ class UserSeeder extends Seeder
         $profileNina = [
             'id_user'      => $idNina,
             'profile_name' => 'Nina',
-            'avatar'       => 'https://static.wikia.nocookie.net/youtube/images/4/4d/Nina_Kosaka%E3%80%90NIJISANJI_EN%E3%80%91_4.jpg/revision/latest?cb=20221016205749',
+            'avatar'       => 'https://i.pinimg.com/736x/53/55/78/5355780ea32cdc2e419a4c97eb6b2826.jpg',
         ];
         $this->db->table('profiles')->insert($profileNina);
         $idProfileNina = $this->db->insertID();
