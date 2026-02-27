@@ -43,15 +43,16 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
     $routes->get('users', 'Admin::users');                // View: Manage Users list
     $routes->post('users/add', 'Admin::addUser');         // Action: Process add new user dari Modal
 
-    $routes->post('users/update/(:num)', 'Admin::updateUser/$1');
-    $routes->post('users/delete/(:num)', 'Admin::deleteUser/$1');
+    $routes->post('users/update/(:num)', 'Admin::updateUser/$1'); // Update User
+    $routes->post('users/delete/(:num)', 'Admin::deleteUser/$1'); // Delete User
 });
 
 // 4. ROUTES API
 $routes->group('api', function ($routes) {
     // Hanya mengaktifkan method 'index' (GET All) dan 'show' (GET by ID)
     $routes->resource('contents', [
-        'controller' => 'Api\LuneraApi', // Pastikan nama Controller API-nya sudah sesuai
+        'controller' => 'Api\LuneraApi',
         'only'       => ['index', 'show']
     ]);
+    $routes->get('search', 'Lunera::searchAPI');
 });

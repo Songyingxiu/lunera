@@ -29,19 +29,17 @@ class Lunera extends BaseController
         
         $continue_watching = [];
 
-        // Jika user login, ambil data personalisasinya
         if ($userId) {
             $userProfile = $this->userModel->join('profiles', 'profiles.id_user = users.id_user')
                                         ->where('users.id_user', $userId)
                                         ->first();
             
             if ($userProfile) {
-                // Ambil data Continue Watching (dari watch_history)
                 $continue_watching = $db->table('watch_history')
                                 ->join('contents', 'contents.id_content = watch_history.id_content')
                                 ->where('watch_history.id_profile', $userProfile['id_profile'])
                                 ->orderBy('watched_at', 'DESC')
-                                ->limit(5) // Ambil 5 terakhir
+                                ->limit(5)
                                 ->get()->getResultArray();
             }
         }
@@ -250,5 +248,24 @@ class Lunera extends BaseController
         }
 
         return $this->response->setJSON(['status' => 'success', 'message' => $msg, 'added' => $added]);
+    }
+
+    // --- METHOD AJAX SEARCH (GET) ---
+    public function searchAPI()
+    {
+        $query = $this->request->getGet('query');
+        
+        if (empty(trim($query))) {
+             return $this->response->setJSON(['status' => 'error', 'message' => 'Query is empty']);
+        }
+
+        // Cari berdasarkan judul
+        $results = $this->contentModel->like('title', $query)->findAll();
+
+        return $this->response->setJSON([
+            'status'  => 'success',
+            'query'   => $query,
+            'results' => $results
+        ]);
     }
 }
