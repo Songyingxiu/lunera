@@ -123,7 +123,7 @@
                 
                 <div class="flex items-center gap-3 w-full md:w-auto">
                     <?php if ($anime['type'] == 'movie') : ?>
-                        <a href="<?= !empty($anime['video_url']) ? esc($anime['video_url']) : '#' ?>" class="flex-1 md:flex-none">
+                        <a href="<?= base_url('watch/' . $anime['id_content'] . '?is_movie=1') ?>" class="flex-1 md:flex-none">
                             <button class="w-full md:w-48 h-10 md:h-11 bg-[#2a0e44] text-white rounded-md flex items-center justify-center gap-2 font-display font-bold hover:bg-[#3d1463] transition active:scale-95 border border-primary shadow-[0_0_10px_rgba(0,243,255,0.4)] hover:shadow-neon-cyan relative overflow-hidden group">
                                 <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                                 <span class="material-symbols-outlined fill-current text-primary text-base md:text-lg drop-shadow-[0_0_5px_rgba(0,243,255,1)]">play_arrow</span>
