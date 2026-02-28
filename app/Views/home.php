@@ -121,7 +121,7 @@
                         <?php foreach ($continue_watching as $watch): ?>
                             <a href="<?= base_url('detail/' . esc($watch['slug'])) ?>" class="relative flex-none w-[260px] md:w-[320px] snap-center group cursor-pointer block">
                                 <div class="aspect-video w-full rounded-sm overflow-hidden relative bg-surface-dark border border-white/5 group-hover:border-secondary/50 group-hover:shadow-neon-cyan transition-all duration-300">
-                                    <img alt="<?= esc($watch['title']) ?>" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" src="<?= esc($watch['thumbnail_url']) ?>"/>
+                                    <img alt="<?= esc($watch['title']) ?>" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" src="<?= esc($watch['cover_url']) ?>"/>
                                     <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-[2px]">
                                         <span class="material-symbols-outlined text-secondary text-[48px] md:text-[60px] drop-shadow-[0_0_10px_rgba(0,240,255,1)]">play_circle</span>
                                     </div>
