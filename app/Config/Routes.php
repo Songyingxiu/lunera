@@ -51,8 +51,8 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
 $routes->group('api', function ($routes) {
     // Hanya mengaktifkan method 'index' (GET All) dan 'show' (GET by ID)
     $routes->resource('contents', [
-        'controller' => 'Api\LuneraApi',
-        'only'       => ['index', 'show']
+        'controller' => 'Api\LuneraApi'
     ]);
     $routes->get('search', 'Lunera::searchAPI');
+    $routes->post('auth/login', 'Auth::apiLogin');
 });
