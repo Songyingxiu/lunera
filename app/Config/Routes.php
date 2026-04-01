@@ -55,4 +55,7 @@ $routes->group('api', function ($routes) {
     ]);
     $routes->get('search', 'Lunera::searchAPI');
     $routes->post('auth/login', 'Auth::apiLogin');
+    $routes->get('profile/(:num)', 'Api\ProfileApi::show/$1'); // READ
+    $routes->post('profile/update', 'Api\ProfileApi::updateProfile'); // UPDATE (Using POST for file uploads)
+    $routes->delete('profile/delete/(:num)', 'Api\ProfileApi::delete/$1'); // DELETE
 });
