@@ -217,40 +217,71 @@ class Lunera extends BaseController
         return view('setting');
     }
 
+    // --- HYBRID TOGGLE: Handles Web (Session) and Flutter (POST) ---
     public function toggleFavorite($id_content)
     {
-        $userId = session()->get('id_user');
+        // Try to get userId from session or POST (Flutter uses POST)
+        $userId = session()->get('id_user') ?? $this->request->getPost('id_user');
+
         if (!$userId) {
-            return $this->response->setJSON(['status' => 'error', 'message' => 'Login required']);
+            return $this->response->setJSON(['status' => 401, 'message' => 'Login required']);
         }
 
         $db = \Config\Database::connect();
-        $userProfile = $this->userModel->join('profiles', 'profiles.id_user = users.id_user')
-                                    ->where('users.id_user', $userId)
-                                    ->first();
+        
+        // Find the profile belonging to this user
+        $profile = $db->table('profiles')->where('id_user', $userId)->get()->getRow();
 
-        if (!$userProfile) {
-            return $this->response->setJSON(['status' => 'error', 'message' => 'Profile not found']);
+        if (!$profile) {
+            return $this->response->setJSON(['status' => 404, 'message' => 'Profile not found']);
         }
 
-        $idProfile = $userProfile['id_profile'];
         $favoritesTable = $db->table('favorites');
-        $existing = $favoritesTable->where(['id_profile' => $idProfile, 'id_content' => $id_content])->get()->getRow();
+        $existing = $favoritesTable->where(['id_profile' => $profile->id_profile, 'id_content' => $id_content])->get()->getRow();
 
         if ($existing) {
             $favoritesTable->where('id_favorite', $existing->id_favorite)->delete();
             $added = false;
             $msg = 'PURGED: Content removed from collection.';
         } else {
-            $favoritesTable->insert(['id_profile' => $idProfile, 'id_content' => $id_content, 'added_at' => date('Y-m-d H:i:s')]);
+            $favoritesTable->insert(['id_profile' => $profile->id_profile, 'id_content' => $id_content, 'added_at' => date('Y-m-d H:i:s')]);
             $added = true;
             $msg = 'SYNCED: Content added to MyList.';
         }
 
-        return $this->response->setJSON(['status' => 'success', 'message' => $msg, 'added' => $added]);
+        // 🚀 CRITICAL: Return status 200 and 'is_favorite'
+        return $this->response->setJSON([
+            'status' => 200, 
+            'message' => $msg, 
+            'is_favorite' => $added
+        ]);
     }
 
-    // --- METHOD AJAX SEARCH (GET) ---
+    // --- NEW METHOD FOR FLUTTER: Get user's favorites as JSON ---
+    public function getFavoritesAPI($userId)
+    {
+        $db = \Config\Database::connect();
+        
+        $profile = $db->table('profiles')->where('id_user', $userId)->get()->getRow();
+        
+        if (!$profile) {
+            return $this->response->setJSON(['status' => 200, 'data' => []]);
+        }
+
+        $favorites = $db->table('favorites')
+                        ->select('contents.*')
+                        ->join('contents', 'contents.id_content = favorites.id_content')
+                        ->where('favorites.id_profile', $profile->id_profile)
+                        ->orderBy('favorites.added_at', 'DESC')
+                        ->get()
+                        ->getResultArray();
+
+        return $this->response->setJSON([
+            'status' => 200,
+            'data'   => $favorites
+        ]);
+    }
+
     public function searchAPI()
     {
         $query = $this->request->getGet('query');
@@ -259,13 +290,30 @@ class Lunera extends BaseController
              return $this->response->setJSON(['status' => 'error', 'message' => 'Query is empty']);
         }
 
-        // Cari berdasarkan judul
         $results = $this->contentModel->like('title', $query)->findAll();
 
         return $this->response->setJSON([
             'status'  => 'success',
             'query'   => $query,
             'results' => $results
+        ]);
+    }
+
+    // 🚀 NEW: API METHOD FOR FETCHING EPISODES
+    public function getEpisodesAPI($id_content)
+    {
+        $db = \Config\Database::connect();
+        
+        // Fetch all episodes for this content, sorted by number
+        $episodes = $db->table('episodes')
+                       ->where('id_content', $id_content)
+                       ->orderBy('episode_no', 'ASC')
+                       ->get()
+                       ->getResultArray();
+
+        return $this->response->setJSON([
+            'status' => 200,
+            'data'   => $episodes
         ]);
     }
 }
