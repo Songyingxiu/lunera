@@ -110,4 +110,16 @@ class LuneraApi extends ResourceController
         }
     }
 
+    // ---------------------------------------------------------
+    // 6. GET CATEGORIES / GENRES - Endpoint: /api/categories
+    // ---------------------------------------------------------
+    public function categories()
+    {
+        $categoryModel = new \App\Models\CategoryModel();
+        return $this->respond([
+            'status'  => 200,
+            'message' => 'Success retrieve categories',
+            'data'    => $categoryModel->findAll()
+        ], 200);
+    }
 }

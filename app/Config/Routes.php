@@ -58,4 +58,5 @@ $routes->group('api', function ($routes) {
     $routes->get('profile/(:num)', 'Api\ProfileApi::show/$1'); // READ
     $routes->post('profile/update', 'Api\ProfileApi::updateProfile'); // UPDATE (Using POST for file uploads)
     $routes->delete('profile/delete/(:num)', 'Api\ProfileApi::delete/$1'); // DELETE
+    $routes->get('categories', 'Api\LuneraApi::categories'); // GET Categories
 });
