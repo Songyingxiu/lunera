@@ -84,6 +84,62 @@ class Auth extends BaseController
         ]);
     }
 
+    public function register()
+    {
+        $userModel = new \App\Models\UserModel();
+        $profileModel = new \App\Models\ProfileModel();
+        
+        // 1. Catch Text Data
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+        $email = $this->request->getPost('email');
+        $profileName = $this->request->getPost('profile_name');
+
+        // 2. Validate Identity
+        if ($userModel->where('username', $username)->first()) {
+            return $this->response->setJSON(['status' => 400, 'message' => 'IDENTITY CODE ALREADY EXISTS']);
+        }
+        if ($userModel->where('email', $email)->first()) {
+            return $this->response->setJSON(['status' => 400, 'message' => 'EMAIL ALREADY REGISTERED']);
+        }
+
+        // 3. Insert User Core
+        $userData = [
+            'username' => $username,
+            'email'    => $email,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+            'role'     => 'user'
+        ];
+
+        if ($userModel->insert($userData)) {
+            $userId = $userModel->insertID();
+
+            // 4. Handle Avatar File Upload
+            $avatarName = '';
+            $avatarFile = $this->request->getFile('avatar');
+            
+            if ($avatarFile && $avatarFile->isValid() && !$avatarFile->hasMoved()) {
+                // Generate a random secure name and move it to public/uploads/avatars/
+                $avatarName = $avatarFile->getRandomName();
+                $avatarFile->move(FCPATH . 'uploads/avatars', $avatarName);
+            }
+
+            // 5. Insert Profile Data
+            $profileModel->insert([
+                'id_user'      => $userId,
+                'profile_name' => $profileName,
+                'avatar'       => $avatarName
+            ]);
+
+            return $this->response->setJSON([
+                'status'  => 200,
+                'message' => 'IDENTITY CREATED SUCCESSFULLY'
+            ]);
+        }
+
+        return $this->response->setJSON(['status' => 500, 'message' => 'CREATION FAILED']);
+    }
+
     public function logout()
     {
         session()->destroy();

@@ -52,6 +52,7 @@ $routes->group('api', function ($routes) {
     
     $routes->get('search', 'Lunera::searchAPI');
     $routes->post('auth/login', 'Auth::apiLogin');
+    $routes->post('auth/register', 'Auth::register');
     
     // Profile API
     $routes->get('profile/(:num)', 'Api\ProfileApi::show/$1'); 
