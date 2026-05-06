@@ -46,11 +46,22 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
 
 // 4. ROUTES API
 $routes->group('api', function ($routes) {
+    
+    // index & show only
     $routes->resource('contents', [
-        'controller' => 'Api\LuneraApi'
+        'controller' => 'Api\LuneraApi',
+        'only'       => ['index', 'show']
     ]);
     
+    // Categories & Episode
+    $routes->get('categories', 'Api\LuneraApi::categories');
+    $routes->get('episodes', 'Api\LuneraApi::episodes');
+
+    // search
     $routes->get('search', 'Lunera::searchAPI');
+    $routes->get('favorites/(:num)', 'Lunera::getFavoritesAPI/$1');
+
+    /*
     $routes->post('auth/login', 'Auth::apiLogin');
     $routes->post('auth/register', 'Auth::register');
     
@@ -58,10 +69,8 @@ $routes->group('api', function ($routes) {
     $routes->get('profile/(:num)', 'Api\ProfileApi::show/$1'); 
     $routes->post('profile/update', 'Api\ProfileApi::updateProfile'); 
     $routes->delete('profile/delete/(:num)', 'Api\ProfileApi::delete/$1'); 
-    $routes->get('categories', 'Api\LuneraApi::categories'); 
 
-    // 🚀 THE SYNC TRIO (Added for Flutter)
+    // The Sync Trio (POST)
     $routes->post('toggleFavorite/(:num)', 'Lunera::toggleFavorite/$1');
-    $routes->get('favorites/(:num)', 'Lunera::getFavoritesAPI/$1');
-    $routes->get('episodes/(:num)', 'Lunera::getEpisodesAPI/$1');
+    */
 });

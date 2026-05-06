@@ -34,7 +34,16 @@ class Admin extends BaseController
     // ==========================================
     public function addEpisode()
     {
-        return view('addepisode');
+        // 1. Fetch categories
+        $categoryModel = new \App\Models\CategoryModel();
+        
+        // 2. Put them in the $data array
+        $data = [
+            'categories' => $categoryModel->findAll()
+        ];
+
+        // 3. Pass $data to the view! (This is the most common part to miss)
+        return view('addcontent', $data); 
     }
 
     public function saveEpisode()
@@ -73,7 +82,16 @@ class Admin extends BaseController
     // ==========================================
     public function addContent()
     {
-        return view('addcontent');
+        // 1. Fetch categories
+        $categoryModel = new \App\Models\CategoryModel();
+        
+        // 2. Put them in the $data array
+        $data = [
+            'categories' => $categoryModel->findAll()
+        ];
+
+        // 3. Pass $data to the view! (This is the most common part to miss)
+        return view('addcontent', $data); 
     }
 
     public function saveContent()

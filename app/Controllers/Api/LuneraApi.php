@@ -10,12 +10,12 @@ class LuneraApi extends ResourceController
 {
     use ResponseTrait;
 
-    // Mendefinisikan model dan format output yang digunakan (JSON)
+    // Mendefinisikan model utama (untuk resource 'contents')
     protected $modelName = 'App\Models\ContentModel';
     protected $format    = 'json';
 
     // ---------------------------------------------------------
-    // 1. GET ALL (Mengambil semua data) - Endpoint: /api/contents
+    // 1. GET ALL (Mengambil semua data contents)
     // ---------------------------------------------------------
     public function index()
     {
@@ -29,7 +29,7 @@ class LuneraApi extends ResourceController
     }
 
     // ---------------------------------------------------------
-    // 2. GET SINGLE (Mengambil 1 data) - Endpoint: /api/contents/{id}
+    // 2. GET SINGLE (Mengambil 1 data content)
     // ---------------------------------------------------------
     public function show($id = null)
     {
@@ -47,13 +47,12 @@ class LuneraApi extends ResourceController
     }
 
     // ---------------------------------------------------------
-    // 3. POST (Menambah data baru) - Endpoint: /api/contents
+    // 3. POST not allowed
     // ---------------------------------------------------------
     public function create()
     {
         $data = $this->request->getJSON(true) ?? $this->request->getPost();
 
-        // Validasi simpel
         if (empty($data)) {
             return $this->failValidationError('No data provided');
         }
@@ -70,14 +69,13 @@ class LuneraApi extends ResourceController
     }
 
     // ---------------------------------------------------------
-    // 4. PUT/PATCH (Update data) - Endpoint: /api/contents/{id}
+    // 4. PUT/PATCH not allowed
     // ---------------------------------------------------------
     public function update($id = null)
     {
         $data = $this->request->getJSON(true) ?? $this->request->getRawInput();
-
-        // Cek apakah data ada
         $find = $this->model->find($id);
+        
         if (!$find) {
             return $this->failNotFound('Data with ID ' . $id . ' not found');
         }
@@ -93,7 +91,7 @@ class LuneraApi extends ResourceController
     }
 
     // ---------------------------------------------------------
-    // 5. DELETE (Hapus data) - Endpoint: /api/contents/{id}
+    // 5. DELETE not allowed
     // ---------------------------------------------------------
     public function delete($id = null)
     {
@@ -111,7 +109,7 @@ class LuneraApi extends ResourceController
     }
 
     // ---------------------------------------------------------
-    // 6. GET CATEGORIES / GENRES - Endpoint: /api/categories
+    // 6. GET CATEGORIES / GENRES
     // ---------------------------------------------------------
     public function categories()
     {
@@ -120,6 +118,19 @@ class LuneraApi extends ResourceController
             'status'  => 200,
             'message' => 'Success retrieve categories',
             'data'    => $categoryModel->findAll()
+        ], 200);
+    }
+
+    // ---------------------------------------------------------
+    // 7. GET EPISODES
+    // ---------------------------------------------------------
+    public function episodes()
+    {
+        $episodeModel = new \App\Models\EpisodeModel();
+        return $this->respond([
+            'status'  => 200,
+            'message' => 'Success retrieve episodes',
+            'data'    => $episodeModel->findAll()
         ], 200);
     }
 }
