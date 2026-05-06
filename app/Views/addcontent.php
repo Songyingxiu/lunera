@@ -127,10 +127,21 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
                         <div class="relative group input-group">
                             <label class="flex justify-between block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">
-                                <span>ID_CATEGORY</span>
+                                <span>CATEGORY</span>
                                 <span class="error-msg text-danger hidden text-[9px]">*Req</span>
                             </label>
-                            <input name="id_category" value="<?= old('id_category') ?>" class="req-input" placeholder="e.g., 1 or CAT-01" type="text" required/>
+                            <select name="id_category" class="req-input" required>
+                                <option value="" disabled <?= !old('id_category') ? 'selected' : '' ?>>-- Select Category --</option>
+                                
+                                <?php if(isset($categories)): ?>
+                                    <?php foreach($categories as $category): ?>
+                                        <option value="<?= $category['id_category'] ?>" <?= old('id_category') == $category['id_category'] ? 'selected' : '' ?>>
+                                            <?= esc($category['category_name']) ?> 
+                                        </option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                                
+                            </select>
                         </div>
                         
                         <div class="relative group input-group">

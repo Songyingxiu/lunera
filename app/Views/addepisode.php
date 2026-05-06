@@ -110,12 +110,23 @@
         <form action="<?= base_url('admin/save-episode') ?>" method="post" class="space-y-6 md:space-y-8" id="episodeForm" novalidate>
             <div class="space-y-5 md:space-y-7">
                 
-                <div class="relative group input-group">
+               <div class="relative group input-group">
                     <label class="flex justify-between block text-secondary text-xs font-cyber tracking-widest mb-1.5 ml-1">
-                        <span>CONTENT_ID</span>
-                        <span class="error-msg text-danger hidden text-[9px]">*Required</span>
+                        <span>CATEGORY</span>
+                        <span class="error-msg text-danger hidden text-[9px]">*Req</span>
                     </label>
-                    <input name="content_id" value="<?= old('content_id') ?>" class="req-input w-full bg-surface-dark border-b border-white/20 text-white placeholder-gray-600 px-4 py-3 focus:outline-none focus:border-secondary focus:bg-surface-purple/30 transition-all font-display text-sm md:text-base rounded-t-sm" placeholder="e.g., 3" type="number" required/>
+                    <select name="id_category" class="req-input" required>
+                        <option value="" disabled <?= !old('id_category') ? 'selected' : '' ?>>-- Select Category --</option>
+                        
+                        <?php if(isset($categories)): ?>
+                            <?php foreach($categories as $category): ?>
+                                <option value="<?= $category['id_category'] ?>" <?= old('id_category') == $category['id_category'] ? 'selected' : '' ?>>
+                                    <?= esc($category['title']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                        
+                    </select>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
