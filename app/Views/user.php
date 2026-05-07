@@ -29,7 +29,7 @@
 
     <div id="validationAlert" class="hidden bg-danger/10 border border-danger/50 text-danger px-4 py-3 rounded-sm text-[10px] font-cyber tracking-widest uppercase shadow-neon-red flex items-center gap-2 mt-4">
         <span class="material-symbols-outlined text-sm">warning</span>
-        <span>SYSTEM HALTED: Missing required parameters.</span>
+        <span id="validationAlertText">SYSTEM HALTED: Missing required parameters.</span>
     </div>
 
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
@@ -121,7 +121,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div class="input-group">
                     <label class="flex justify-between">PASSWORD <span class="error-msg text-danger hidden text-[9px]">*Req</span></label>
-                    <input type="password" name="password" required placeholder="••••••••" class="req-input w-full">
+                    <input type="password" name="password" id="add_password" required placeholder="••••••••" class="req-input w-full">
                 </div>
                 <div>
                     <label>ROLE ACCESS</label>
@@ -175,9 +175,10 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                    <label>NEW PASSWORD <span class="text-gray-600 text-[8px] lowercase">(leave blank to keep current)</span></label>
-                    <input type="password" name="password" placeholder="••••••••" class="w-full focus:shadow-[inset_0_0_10px_rgba(0,240,255,0.2)]">
+                <div class="input-group">
+                    <label class="flex justify-between">NEW PASSWORD <span class="error-msg text-danger hidden text-[9px]">*Min 5 Chars</span></label>
+                    <input type="password" id="edit_password" name="password" placeholder="••••••••" class="w-full focus:shadow-[inset_0_0_10px_rgba(0,240,255,0.2)]">
+                    <span class="text-gray-600 text-[8px] lowercase block mt-1">(leave blank to keep current)</span>
                 </div>
                 <div>
                     <label>ROLE ACCESS</label>
@@ -246,20 +247,23 @@
         document.getElementById('edit_email').value = data.email;
         document.getElementById('edit_profile_name').value = data.profile_name || data.username;
         document.getElementById('edit_avatar').value = data.avatar || '';
+        document.getElementById('edit_password').value = ''; // Reset password field
         document.getElementById('edit_role').value = data.role;
         
-        // Ubah action form ke route update beserta ID user-nya
         document.getElementById('formEditUser').action = "<?= base_url('admin/users/update/') ?>" + data.id_user;
         openModal('editUserModal');
     }
 
-    // --- Form UI Validation (Add & Edit) ---
+    // --- Form UI Validation (Add & Edit) with 5 Char Password Minimum ---
     document.querySelectorAll('.modal-form').forEach(form => {
         form.addEventListener('submit', function(event) {
             let isValid = true;
             const inputs = form.querySelectorAll('.req-input');
             const alertBox = document.getElementById('validationAlert');
+            const alertText = document.getElementById('validationAlertText');
             
+            let errorMessage = 'SYSTEM HALTED: Missing required parameters.';
+
             inputs.forEach(input => {
                 const group = input.closest('.input-group');
                 const errorMsg = group.querySelector('.error-msg');
@@ -267,15 +271,45 @@
                 input.classList.remove('border-danger', 'bg-danger/10');
                 if(errorMsg) errorMsg.classList.add('hidden');
 
-                if (input.value.trim() === '') {
+                // Check for empty required inputs
+                if (input.value.trim() === '' && input.hasAttribute('required')) {
                     isValid = false;
                     input.classList.add('border-danger', 'bg-danger/10');
-                    if(errorMsg) errorMsg.classList.remove('hidden');
+                    if(errorMsg) {
+                        errorMsg.innerText = '*Req';
+                        errorMsg.classList.remove('hidden');
+                    }
+                }
+                
+                // Specific Check for Passwords (Add User)
+                if(input.id === 'add_password' && input.value.trim().length > 0 && input.value.trim().length < 5) {
+                    isValid = false;
+                    input.classList.add('border-danger', 'bg-danger/10');
+                    if(errorMsg) {
+                        errorMsg.innerText = '*Min 5 Chars';
+                        errorMsg.classList.remove('hidden');
+                    }
+                    errorMessage = 'SYSTEM HALTED: Password must be at least 5 characters.';
                 }
             });
 
+            // Specific Check for Edit Password (it's not required, but IF filled, must be 5 chars)
+            const editPassword = form.querySelector('#edit_password');
+            if (editPassword && editPassword.value.trim().length > 0 && editPassword.value.trim().length < 5) {
+                isValid = false;
+                editPassword.classList.add('border-danger', 'bg-danger/10');
+                const group = editPassword.closest('.input-group');
+                const errorMsg = group.querySelector('.error-msg');
+                if(errorMsg) {
+                    errorMsg.innerText = '*Min 5 Chars';
+                    errorMsg.classList.remove('hidden');
+                }
+                errorMessage = 'SYSTEM HALTED: Password must be at least 5 characters.';
+            }
+
             if (!isValid) {
                 event.preventDefault();
+                alertText.innerText = errorMessage;
                 alertBox.classList.remove('hidden');
                 
                 // Efek getar Cyberpunk
@@ -290,12 +324,14 @@
     });
 
     // --- Reset Error Saat Mengetik ---
-    document.querySelectorAll('.req-input').forEach(input => {
+    document.querySelectorAll('.req-input, #edit_password').forEach(input => {
         input.addEventListener('input', function() {
             const group = input.closest('.input-group');
-            const errorMsg = group.querySelector('.error-msg');
-            input.classList.remove('border-danger', 'bg-danger/10');
-            if(errorMsg) errorMsg.classList.add('hidden');
+            if(group) {
+                const errorMsg = group.querySelector('.error-msg');
+                input.classList.remove('border-danger', 'bg-danger/10');
+                if(errorMsg) errorMsg.classList.add('hidden');
+            }
         });
     });
 </script>

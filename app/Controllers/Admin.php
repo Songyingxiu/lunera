@@ -162,6 +162,19 @@ class Admin extends BaseController
 
     public function addUser()
     {
+        $email = $this->request->getPost('email');
+        $username = $this->request->getPost('username');
+
+        // 🔴 CHECK FOR DUPLICATE EMAIL
+        if ($this->userModel->where('email', $email)->first()) {
+            return redirect()->to('admin/users')->withInput()->with('error', 'SYSTEM HALTED: Email ' . $email . ' is already registered to another operative.');
+        }
+
+        // 🔴 CHECK FOR DUPLICATE USERNAME
+        if ($this->userModel->where('username', $username)->first()) {
+            return redirect()->to('admin/users')->withInput()->with('error', 'SYSTEM HALTED: Identity code @' . $username . ' is already taken.');
+        }
+
         $db = \Config\Database::connect();
 
         // Menggunakan Database Transaction (Mengamankan insert ke 2 tabel sekaligus)
@@ -169,8 +182,8 @@ class Admin extends BaseController
 
         // 1. Data untuk tabel Users
         $userData = [
-            'username'   => $this->request->getPost('username'),
-            'email'      => $this->request->getPost('email'),
+            'username'   => $username,
+            'email'      => $email,
             'password'   => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
             'role'       => $this->request->getPost('role'),
             'created_at' => date('Y-m-d H:i:s')
@@ -211,13 +224,28 @@ class Admin extends BaseController
     // ==========================================
     public function updateUser($id_user)
     {
+        $email = $this->request->getPost('email');
+        $username = $this->request->getPost('username');
+
+        // 🔴 CHECK FOR DUPLICATE EMAIL (Ignore current user)
+        $existingEmail = $this->userModel->where('email', $email)->first();
+        if ($existingEmail && $existingEmail['id_user'] != $id_user) {
+            return redirect()->to('admin/users')->withInput()->with('error', 'SYSTEM HALTED: Email ' . $email . ' is already in use by another operative.');
+        }
+
+        // 🔴 CHECK FOR DUPLICATE USERNAME (Ignore current user)
+        $existingUsername = $this->userModel->where('username', $username)->first();
+        if ($existingUsername && $existingUsername['id_user'] != $id_user) {
+            return redirect()->to('admin/users')->withInput()->with('error', 'SYSTEM HALTED: Identity code @' . $username . ' is already taken.');
+        }
+
         $db = \Config\Database::connect();
         $db->transStart();
 
         // 1. Update tabel Users
         $userData = [
-            'username' => $this->request->getPost('username'),
-            'email'    => $this->request->getPost('email'),
+            'username' => $username,
+            'email'    => $email,
             'role'     => $this->request->getPost('role')
         ];
 

@@ -154,34 +154,46 @@
             const usernameBox   = document.getElementById('usernameBox');
             const passwordBox   = document.getElementById('passwordBox');
             const errorBox      = document.getElementById('validationError');
-            const errorText     = document.getElementById('errorText');
+            const passwordAlert = document.getElementById('passwordAlert');
             
             // Reset state
             usernameBox.classList.remove('border-danger', 'shadow-neon-error');
             passwordBox.classList.remove('border-danger', 'shadow-neon-error');
             document.getElementById('usernameAlert').classList.add('hidden');
-            document.getElementById('passwordAlert').classList.add('hidden');
+            passwordAlert.classList.add('hidden');
             errorBox.classList.add('hidden');
             
             // Re-trigger animation by cloning and replacing the error box
             const newErrorBox = errorBox.cloneNode(true);
             errorBox.parentNode.replaceChild(newErrorBox, errorBox);
             
-            // Validasi Username Kosong
+            // 1. Validate Username Empty
             if (usernameInput.value.trim() === '') {
                 usernameBox.classList.add('border-danger', 'shadow-neon-error');
                 document.getElementById('usernameAlert').classList.remove('hidden');
+                document.getElementById('usernameAlert').innerText = '*Required';
                 isValid = false;
             }
             
-            // Validasi Password Kosong
-            if (passwordInput.value.trim() === '') {
+            // 2. Validate Password Empty OR Minimum Length
+            const passwordValue = passwordInput.value.trim();
+            
+            if (passwordValue === '') {
                 passwordBox.classList.add('border-danger', 'shadow-neon-error');
-                document.getElementById('passwordAlert').classList.remove('hidden');
+                passwordAlert.classList.remove('hidden');
+                passwordAlert.innerText = '*Required';
+                newErrorBox.querySelector('#errorText').innerText = 'ACCESS DENIED: Required fields missing.';
+                isValid = false;
+            } 
+            else if (passwordValue.length < 5) {
+                passwordBox.classList.add('border-danger', 'shadow-neon-error');
+                passwordAlert.classList.remove('hidden');
+                passwordAlert.innerText = '*Min 5 chars';
+                newErrorBox.querySelector('#errorText').innerText = 'ACCESS DENIED: Password must be at least 5 characters.';
                 isValid = false;
             }
 
-            // Jika ada yang kosong, cegah form dikirim
+            // Jika ada yang kosong/invalid, cegah form dikirim
             if (!isValid) {
                 event.preventDefault(); // Stop form dari submit
                 newErrorBox.classList.remove('hidden'); // Munculkan kotak error merah
