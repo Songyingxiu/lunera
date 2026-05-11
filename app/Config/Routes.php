@@ -61,7 +61,7 @@ $routes->group('api', function ($routes) {
     $routes->get('search', 'Lunera::searchAPI');
     $routes->get('favorites/(:num)', 'Lunera::getFavoritesAPI/$1');
 
-    /*
+    // --- AUTH API ---
     $routes->post('auth/login', 'Auth::apiLogin');
     $routes->post('auth/register', 'Auth::register');
     
@@ -72,5 +72,6 @@ $routes->group('api', function ($routes) {
 
     // The Sync Trio (POST)
     $routes->post('toggleFavorite/(:num)', 'Lunera::toggleFavorite/$1');
-    */
+    
+
 });

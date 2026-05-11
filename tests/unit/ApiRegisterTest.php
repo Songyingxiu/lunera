@@ -38,7 +38,7 @@ class ApiRegisterTest extends CIUnitTestCase
 
         // 4. THE COOL PART: Check the database to make sure it actually saved!
         // (Make sure 'db_users' and 'db_profiles' match the actual table names in your migrations)
-        $this->seeInDatabase('db_users', [
+        $this->seeInDatabase('users', [
             'username' => 'new_flutter_user',
             'email'    => 'flutter@user.com'
         ]);
@@ -47,7 +47,7 @@ class ApiRegisterTest extends CIUnitTestCase
     public function testRegisterApiBlocksDuplicateUsernames()
     {
         // 1. Forcefully insert a dummy user into the test database first
-        $this->hasInDatabase('db_users', [
+        $this->hasInDatabase('users', [
             'username' => 'taken_username',
             'email'    => 'original@user.com',
             'password' => 'somehash',
